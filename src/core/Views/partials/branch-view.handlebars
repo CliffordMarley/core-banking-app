@@ -1,0 +1,95 @@
+<div class="row pr-2">
+    <div class="col-12">
+        
+    </div>
+    <div class="col-1">
+        <a href="branch-management" class="ui button circular basic facebook icon tiny"><i class="icon chevron left"></i></a>
+    </div>
+    <div class="col-8">
+        <h2 style="font-family: orbitron;" class="px-2 py-1 bg-theme text-white text-left">
+            View Branch Details
+        </h2>
+          <fieldset class="border border-secondary pt-2 tatata">
+                <legend class="text-danger" style="font-size: 16px;">Branch Details</legend>
+                  <div class=" py-1">
+                     <div class="row">
+                        <div class="col-10">
+                           <style>
+                              #account_details tbody tr td{
+                                 font-family: monaco;
+                              }
+                           </style>
+                           <table class="table table-sm table-striped m-0">
+                              <tbody>
+                                 <tr><td>Branch Name:</td> <td id="branch_number">{{branch.branch_name}}</td></tr>
+                                 <tr><td>Branch Code:</td> <td id="branch_name">{{branch.branch_code}}</td></tr>
+                                 <tr><td>Physical Address:</td> <td id="branch_type">{{branch.address_line_1}}, {{branch.address_line_2}}, {{branch.city}}</td></tr>
+                                 <tr><td>Contact Phone:</td> <td id="branch_status">{{branch.contact_phone}}</td></tr>
+                                 <tr><td>Contact Email:</td> <td id="branch_status"><a href="mailto:{{branch.contact_email}}">{{branch.contact_email}}</a></td></tr>
+                                 <tr><td>Opening Date:</td> <td id="branch_create_date">{{branch.created_at}}</td></tr>
+                                 <tr><td>Status:</td> {{#ifeq branch.status 'BRANCH.ACTIVE'}}<td class="text-success">{{branch.status}}</td>{{/ifeq}} {{#ifeq branch.status 'BRANCH.CLOSED'}}<td class="text-danger">{{branch.status}}</td>{{/ifeq}}</tr>
+                                 
+                              </tbody>
+                           </table>
+                           
+                        </div>
+                     </div>
+               </div>
+        </fieldset>
+    </div>
+    <div class="col-3">
+        <h2 style="font-family: orbitron;" class="px-2 py-1 bg-theme text-white text-left">
+            Actions
+        </h2>
+        <button class="btn btn-lg btn-block bg-theme mt-2 text-white flat">
+            New Business Day <i class="icon lock"></i>
+        </button>
+    </div>
+    
+    <div class="col-12 py-2 text-right">
+        <button class="btn bg-theme flat text-white btn-lg">Create Internal Account</button> | 
+        <button class="btn btn-danger flat btn-lg">Suspend Internal Account</button> | 
+        <button class="btn bg-theme text-white flat btn-lg">View Activity Log</button>
+    </div>
+    <div class="col-12">
+        <hr>
+        <table class="table ui celled tiny hover" id="staff_members_table">
+            <thead>
+                <th>GLCode</th>
+                <th>Account Name</th>
+                <th>Account Number</th>
+                <th>Balance</th>
+                <th>Status</th>
+                <th></th>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+<style>
+    #staff_members_table thead th{
+        font-size: 14px;
+    }
+    table tbody tr, table tbody tr td{
+        padding:.1em !important;
+    }
+</style>
+
+<script>
+    let staff_table;
+    $(document).ready(()=>{
+        staff_table = $("#staff_members_table").DataTable({
+            pageLength:5
+        })
+    })
+</script>
+<script src="js/branch.jsx"></script>
+
+<style>
+    th, tr td{
+        font-family: 'roboto' !important;
+        font-size: 14px;
+    }
+</style>

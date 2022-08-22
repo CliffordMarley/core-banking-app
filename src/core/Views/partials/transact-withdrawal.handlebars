@@ -1,0 +1,183 @@
+<div class="row">
+    <div class="col-12">
+        <h3 class="bg-theme p-2 text-white">General Cash Withdrawal</h3>
+
+    </div>
+    <div class="col-12 text-center">
+        <label class="">Transaction Overview..</label>
+        <hr>
+    </div>
+    <div class="col-4">
+        <fieldset class="card border border-secondary mt-3 py-0">
+            <legend style="color:black;font-weight:bold;font-size:14px;">Account Type</legend>
+            <div class="card-body">
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="radio" class="account_type_radio form-check-input" value="1" checked
+                            name="account_type">Customer
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="radio" class="account_type_radio form-check-input" value="2"
+                            name="account_type">Corporate
+                    </label>
+                </div>
+                {{!-- <div class="form-check-inline disabled">
+                    <label class="form-check-label">
+                        <input type="radio" class="account_type_radio form-check-input" value="3"
+                            name="account_type">Merchant
+                    </label>
+                </div> --}}
+            </div>
+        </fieldset>
+        <hr>
+        <form class="pt-1" id="first_form">
+            <div class="form-row border py-3 border-secondary">
+                <div class="col-12 form-group">
+                    <h4 style="font-family: 'Arial Narrow Bold', sans-serif;width:100%;"
+                        class="text-success text-center" id="amount_to_word">AMOUNT IN WORDS</h4>
+                </div>
+            </div>
+            <div class="form-row pt-3">
+
+                <div class="form-group col-9 ">
+                    <label for="">Account Number:</label>
+                    <input type="tel" placeholder="e.g 0990099099" id="search_account" class="form-control rounded-0">
+                    <div style="position: fixed;margin-top:0px;margin-left:200px;z-index:20;">
+                        <div class="list-group" id="show-list">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-9 form-group">
+
+                    <label>Cash Withdrawal Amt: </label>
+                    <input type="number" class="form-control rounded-0 form-control-md" id="withdrawal_amount"
+                        style="font-family: Poppins;" placeholder="Not less than MK100.00" required />
+                </div>
+                <div class="col-12 mx-auto">
+
+                    <p style="font-family: mont;font-size:13px;font-weight:bold;color:red;" class="my-3"><span
+                            style="color:black;font-weight:bold;">NOTE: </span>Dear
+                        {{my_data.firstname}}, be sure to take great care when input values to withdraw. Crosscheck
+                        against the word amount that will begin to apprear in green immediately after you begin typing
+                        the amount.</p>
+                </div>
+                <div class="col-12 text-right form-group px-2">
+                    <hr>
+                    <button type="reset" class="btn btn-md btn-warning" data-dismiss="modal">Clear</button>
+                    <button type="button" id='initiateWithdrawalBtn'
+                        class="btn ui button positive btn-md btn-success">Initiate
+                        Cashout</button>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+    <div class="col-8">
+      <div class="row d-none" id="display_details_area">
+         <fieldset class="col-6 border border-secondary">
+            <legend style="font-size: 14px;">Account Summary</legend>
+            <style>
+               #account_details tbody tr th {
+                  font-family: mont;
+               }
+            </style>
+            <table class="table table-sm table-striped m-0 " id="account_details">
+               <tbody>
+                  <tr>
+                     <th>Account Number:</th>
+                     <th id="acc_number">--</th>
+                  </tr>
+                  <tr>
+                     <th>Account Name:</th>
+                     <th id="acc_name">--</th>
+                  </tr>
+                  <tr>
+                     <th>Account Type:</th>
+                     <th id="acc_type">--</th>
+                  </tr>
+                  <tr>
+                     <th>Status:</th>
+                     <th id="acc_status">--</th>
+                  </tr>
+                  <tr>
+                     <th>Opening Date:</th>
+                     <th id="acc_create_date">--</th>
+                  </tr>
+                  <tr>
+                     <th>Available Balance:</th>
+                     <th>MK<span style="font-weight:bold;" id="acc_balance">0.00</span></th>
+                  </tr>
+               </tbody>
+            </table>
+
+         </fieldset>
+         {{!-- <div class="col-1">
+            <div class="ui vertical divider">
+               <i class="icon arrow left"></i>
+               <i class="icon arrow right"></i>
+            </div>
+         </div> --}}
+         <div class="col-6">
+            
+      <fieldset class="border border-secondary p-1 px-2 ui segment kyc_segment"
+         style="height:100%;background:none;border-radius:none;">
+         <legend style="font-size: 14px;">KYC Details</legend>
+         <div style="height: 27vh;" class="ui image kyc_display_image">
+
+         </div>
+
+         <table class="table table-sm mt-2" id="kyc_details_display">
+
+            <tbody>
+               <tr>
+                  <td>ID NUMBER :</td>
+                  <td class="id_number">EMPTY</td>
+               </tr>
+               <tr>
+                  <td>ID TYPE :</td>
+                  <td class="id_type">EMPTY</td>
+               </tr>
+
+               <tr>
+                  <td>DATE ISSUED :</td>
+                  <td class="issue_date">EMPTY</td>
+               </tr>
+               <tr>
+                  <td>EXPRY DATE :</td>
+                  <td class="expiry_date">EMPTY</td>
+               </tr>
+            </tbody>
+         </table>
+
+      </fieldset>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+{{!-- Direct Cash withdrawal Modal --}}
+
+
+
+</div>
+
+<script src="js/accounts.jsx"></script>
+<script src="js/withdrawal.jsx"></script>
+<script src="js/AccountManagement.jsx"></script>
+
+<style>
+    .deposit_fields {
+        width: 100px !important;
+    }
+
+    table tbody tr td {
+        width: 50px !important;
+    }
+
+</style>

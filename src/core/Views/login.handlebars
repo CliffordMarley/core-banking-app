@@ -1,0 +1,144 @@
+<div class="row" >
+    <div class="col-12 p-5 text-center">
+       
+        <h1 style="font-family:Montserrat;">WELCOME BACK!</h1>
+        
+        <label style="font-family: Montserrat;">Please Sign-In to get access!</label>
+    </div>
+    <div class="col-5 mx-auto ui p-0 m-0 raised segment flat"  >
+        <div class="row " >
+            <div class="col-6 text-center " >
+               
+              <div class="bg-theme px-3" style="height:50vh;padding-top:50px;position:relative; height:100%;">
+                <h1 class="text-white my-3 mt-5" style="font-family: Montserrat;">Ready?</h1>
+                <p class="text-white" style="font-family: Montserrat;">OK, quickly sign in and lets get to work.</p>
+                <hr>
+                <br>
+                <h3 class="text-white">
+                    Tip: <span style="font-size:13px;"> <i>"Type your full and valid username to enable Branch dropdown list!"</i></span>
+                </h3>
+              </div>
+            </div>
+            <div class="col-6 " style="padding-top:20px;padding-bottom:20px;">
+                 <div class="ui image medium">
+            <img src="assets/logo.png" alt="Maxiko Logo">
+        </div>
+                <form  id="login_form" class="p-2" autocomplete="off">
+                    <div class="form-row">
+                          <div class="col-12 form-group">
+                              <label for="">Branch :</label>
+                            <select name="branch" disabled id="branches_list" class="form-control flat"></select>
+                        </div>
+                        <div class="col-12 form-group">
+                             <label style="font-weight:bold;">Username :</label>
+                            <input  id="username_field" type="email" name="username" class=" flat form-control" autocomplete="off" placeholder="Email Address" required/>
+                        </div>
+                        <div class="col-12 form-group">
+                             <label style="font-weight:bold;">Password :</label>
+                            <input type="password" style="-webkit-text-security: disc !important;"  autocomplete="off" name="password" class=" flat form-control" placeholder="(Required)">
+                        </div>
+                        <div class="col-12">
+                            <button type="button" id="loginBtn" style="font-family: Montserrat;" class="btn btn-lg btn-block bg-theme flat text-white">Sign In <i class="icon lock"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-12">
+                 <div style="margin: 0 !important;;padding:0 !important;" class="ui  divider"></div>
+            </div>
+            <div class="col-12">
+              <div class="p-4 text-center">
+                <p style="line-height:normal;font-family:Montserrat;"><b><span  class="text-danger">No unauthorized use of this system. If permitted, only use it withing the rights assigned and do not access this system using another person's credentials!</span></b></p>
+              </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+<script>
+    let timeOut
+    $(document).ready(()=>{
+        $("#username_field").keyup((e)=>{
+            clearTimeout(timeOut)
+            timeOut = setTimeout(()=>{
+                const staff_email_address = $("#username_field").val()
+                console.log(staff_email_address)
+                FetchBranch(staff_email_address)
+            }, 1000)
+        })
+
+        
+        $("#loginBtn").click(e=>{
+            const data = getFormData('login_form')
+            if(!Isset(data.branch)){
+                toast('Please select your branch from the list!', 'error')
+                return 
+            }
+            if(!Isset(data.username)){
+                toast('Please provide your username to login!', 'error')
+                return 
+            }
+            if(!Isset(data.password)){
+                toast('Please enter your password to login!', 'error')
+                return 
+            }
+            const options = {
+                method:"POST",
+                headers:{
+                    'Content-Type':"application/json"
+                },
+                body:JSON.stringify(data)
+            }
+            $("#loginBtn").addClass('loading')
+            fetch(`${BaseURL}/staff/login`, options, data)
+            .then(response => response.json())
+            .then(response=>{
+                if(response.status == 'success'){
+                    setTimeout(() =>{location.href = 'workspace'}, 2000)
+                    swal('Access Granted!', response.message, response.status)
+                }else{
+                    swal('Access Denied!', response.message, response.status)
+                    $("#loginBtn").removeClass('loading')
+                }
+            }).catch(err=>{
+                swal('Connection Error!', err.message, 'error')
+                $("#loginBtn").removeClass('loading')
+
+            })
+        })
+
+
+
+    })
+
+    function FetchBranch(staff_email){
+        fetch(`${BaseURL}/staff/branches/${staff_email}`)
+        .then(res=>res.json())
+        .then(res=>{
+            if(res.status == 'success'){
+                if(res.data.length > 0){
+                    const BranchArrayList = res.data
+                    let options = BranchArrayList.map(branch=>{
+                        return `<option value="${branch.branch_code}">${branch.branch_name} Branch - ${branch.city}</option>`
+                    })
+                    options = options.join(',')
+                    $("#branches_list").html(options)
+                    $("#branches_list").attr('disabled', false)
+                    $("#username_field").attr('style','')
+                }else{
+                    toast('Unidentified user Id!', 'warning')
+                    $("#username_field").attr('style','border:2px solid red !important;')
+                     $("#branches_list").html('')
+                    $("#branches_list").attr('disabled', true)                  
+                }
+            }else{
+                $("#branches_list, #loginBtn").attr('disabled', true)
+            }
+        })
+        .catch(err=>{
+            console.log(err)
+            toast('Failed to fetch branches!', 'error')
+        })
+    }
+</script>

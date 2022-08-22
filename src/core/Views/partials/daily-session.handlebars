@@ -1,0 +1,204 @@
+<div class="row">
+    <div class="col-9">
+        <h2 style="font-family: orbitron;" class="p-2 pt-4 bg-theme text-white text-left">
+            Current Session Details 
+        </h2>
+        <div class="row">
+           <div class="col-12">
+                {{#ifeq session_data 'empty'}} 
+                    <h4 id="no_session_msg">You do not have any active session!</h4> 
+                {{/ifeq}}
+           </div>
+        </div>
+        <div class="row {{#ifeq session_data 'empty'}}d-none{{/ifeq}}">
+            <div class="col-lg-4 col-md-6" style="margin-top: 20px">
+            <div class="card border-primary">
+                <div class="card-body bg-primary text-white">
+                    <div class="row">
+                        <div class="col-3">
+                          <i><img src="images/icons/cash_in_hand_50px.png" alt=""></i>
+                        </div>
+                        <div class="col-9 text-right">
+                            <h1 style="font-size:16px;font-family:monaco;">MK - 2,600,500</h1>
+                            <h4> Cashier Balance</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6" style="margin-top: 20px">
+            <div class="card border-success">
+                <div class="card-body bg-success text-white">
+                    <div class="row">
+                        <div class="col-3">
+                            <i><img src="images/icons/safe_in_96px.png" alt=""></i>
+                            {{!-- <i class="fa fa-road fa-5x"></i> --}}
+                        </div>
+                        <div class="col-9 text-right">
+                            <h1 style="font-size:16px;font-family:monaco;">MK4,345,900</h1>
+                            <h4>Total Deposits</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6" style="margin-top: 20px">
+            <div class="card border-danger">
+                <div class="card-body bg-danger text-white">
+                    <div class="row">
+                        <div class="col-3">
+                            <i class=""><img src="images/icons/safe_out_48px.png" alt=""></i>
+                        </div>
+                        <div class="col-9 text-right">
+                            <h1 style="font-size:16px;font-family:monaco;">MK7,110,000</h1>
+                            <h4>Total Withdrawals</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6" style="margin-top: 20px">
+            <div class="card border-secondary">
+                <div class="card-body bg-secondary text-white">
+                    <div class="row">
+                        <div class="col-3">
+                            <i><img src="images/icons/stack_of_coins_50px.png" alt=""></i>
+                        </div>
+                        <div class="col-9 text-right">
+                            <h1 style="font-size:16px;font-family:monaco;">MK0.00</h1>
+                            <h4>Closing Balance</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6" style="margin-top: 20px">
+            <div class="card border-warning">
+                <div class="card-body bg-warning text-white">
+                    <div class="row">
+                        <div class="col-3">
+                            <i class=""><img src="images/icons/transaction_50px.png" alt=""></i>
+                        </div>
+                        <div class="col-9 text-right">
+                            <h1 style="font-size:16px;font-family:monaco;color:black !important;" id="actions">0</h1>
+                            <h4 style="color:black !important;">Actions</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="row px-2 {{#ifeq session_data 'empty'}}d-none{{/ifeq}}">
+            <div class="col-12">
+                <hr>
+            </div>
+            <div class="col-12 px-1">
+                <table class="table table-sm">
+                {{!-- <tr>
+                    <td>Session ID :</td>
+                    <td>k67judt73g38839</td>
+                </tr> --}}
+                <tr>
+                    <td>Start DateTime :</td>
+                    <td>2021-11-14 05:44PM</td>
+                </tr>
+               
+                <tr>
+                    <td>Status :</td>
+                    <td class="text-success {{#ifeq session_data.status 'CLOSED'}} text-danger{{/ifeq}}" style="font-weight: bold;">INPROGRESS</td>
+                </tr>
+                <tr>
+                    <td>Supervisor :</td>
+                    <td>Paul Katema</td>
+                </tr>
+                <tr>
+                    <td>Resident Branch :</td>
+                    <td>{{userdata.branch.branch_name}} ({{userdata.branch.branch_code}}) - {{userdata.branch.adrress_line_1}}, {{userdata.branch.adrress_line_2}}, {{userdata.branch.city}}</td>
+                </tr>
+            </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-3 border py-2 border-left-secondary">
+        <div class="form ui">
+            <div class="field">
+                <label for="">Pick Session Date</label>
+                <div class="ui calendar" id="standard_calendar">
+                <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    <input type="text" placeholder="All Sessions">
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui horizontal divider mt-4">Activity Log</div>
+        <div id="activity_list" class=" " style="height: 50vh; max-height:50vh;overflow-y:scroll;">
+            <ul >
+              
+            </ul>
+        </div>
+        <style>
+            #activity_list ul li{
+                list-style: circle !important;
+                list-style-type: circle !important;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .row .col-12 #no_session_msg{
+                font-family: 'Yu Gothic UI' !important;
+                color: #aaaaaa !important;
+                text-align: center !important;
+                margin-top:5em !important;
+                font-weight: lighter !important;
+                font-size: 25px;
+            }
+
+        </style>
+    </div>
+</div>
+
+
+<script>
+    let sessions;
+    $(document).ready(()=>{
+        $('#standard_calendar').calendar({
+            startMode: 'month'
+        });
+        
+        getUserSessions();
+    });
+
+    
+    function getUserSessions(){
+        fetch(`${baseURL}/user/session`)
+        .then(res => res.json())
+        .then(res => {
+            sessions = res.data;
+            if(res.status == 'success'){
+                let DOM = sessions[0].activity.map(activity=>{
+                    let desc = JSON.parse(activity.summary);
+                    return `<li class="ui raised segment p-1">
+                                <p class="my-0 text-right" style="font-size: 10px; font-weight:bold;">${activity.stamp}</p>
+
+                                <label class=" my-0" style="font-weight: bold;font-size:10px !important;">FATP: ${desc.FATP} </label>
+
+                                <label class=" my-0" style="font-weight: bold;font-size:10px !important;">ACCOUNT: ${desc.ACCOUNT}</label>
+
+                                <label class=" my-0" style="font-weight: bold;font-size:10px !important;">STATUS: ${desc.STATUS}</label>
+                            </li>`;
+                })
+
+                DOM = DOM.join("");
+                $("#activity_list ul").html(DOM);
+
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            console.log('Retrying in 5 seconds...\n')
+            setTimeout(()=>{
+                getUserSessions();
+            },5000)
+        })
+    }
+</script>

@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-12">
+        <nav id="navigation_bar_top" class="navbar navbar-expand-lg navbar-light bg-theme">
+            <a class="navbar-brand" style="font-family: orbitron;" href="#">MX-POWER</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item {{#ifnoteq title 'Help'}}active{{/ifnoteq}}">
+                        <a class="nav-link" href="workspace"><i class="tachometer alternate icon"></i>WorkSpace <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#"><i class="icon info"></i>Help</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <ul class="navbar-nav">
+                        <li style="border-left:2px solid white;border-right:2px solid white;" class="nav-item">
+                            <a class="nav-link disabled" href="#">
+                                <i class="icon clock"></i> Server Time : <span class="text-success p-2 bg-white">12:45:02 PM </span>
+                            </a>
+                        </li>
+                        <li style="border-left:2px solid white;border-right:2px solid white;" class="nav-item">
+                            <a class="nav-link disabled" href="#"> <i class="user  icon"></i> {{userdata.firstname}} {{userdata.lastname}}
+                                ({{userdata.branch.branch_name}} Branch ({{userdata.branch.branch_code}}) -
+                                {{userdata.branch.city}})</a>
+                        </li>
+
+
+
+                        <li class="nav-item dropdown mr-3 pr-3">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="cog circle icon"></i> Actions
+                            </a>
+                            <div class="dropdown-menu bg-theme mr-3" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">My Profile</a>
+                                <a class="dropdown-item" href="history">History</a>
+                                <a class="dropdown-item" href="#">Settings</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="logout">Sign Out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+
+        </nav>
+    </div>
+</div>

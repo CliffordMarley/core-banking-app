@@ -1,0 +1,113 @@
+<form id="new_branch_form" class="row pr-2">
+    <div class="col-12">
+        <h2 style="font-family: orbitron;" class="px-2 py-2 bg-theme text-white text-left">
+            Create New Branch
+        </h2>
+        <hr>
+    </div>
+    <div class="col-6" >
+         <fieldset class=" border border-secondary py-3 pt-4">
+             <legend class="text-danger" style="font-size:14px;">Branch Opening Form</legend>
+        <table class="table table-sm table-bordered">
+            <tr>
+                <td style="font-size:17px !important;">Branch Code <span class="text-danger">*</span> :</td>
+                <td><input type="number" style="width:40%;" name="branch_code" class="form-control form-control-sm" required/></td>
+            </tr>
+            <tr>
+                <td style="font-size:17px !important;">Branch Name <span class="text-danger">*</span> :</td>
+                <td><input type="text" name="branch_name" class="form-control form-control-sm" required/></td>
+            </tr>
+            <tr>
+                <td style="font-size:17px !important;">Contact Email :</td>
+                <td><input type="text" placeholder="e.g branchname@organisation.ext" name="contact_email" class="form-control form-control-sm" required/></td>
+            </tr>
+            <tr>
+                <td style="font-size:17px !important;">Contact Phone :</td>
+                <td><input type="text" name="contact_phone" placeholder="Include ZIP (e.g +26599123456)" class="form-control form-control-sm" required/></td>
+            </tr>
+            <tr>
+                <td style="font-size:17px !important;">Address Line 1 <span class="text-warning">*</span> :</td>
+                <td><input type="text" name="address_line_1" class="form-control form-control-sm" required/></td>
+            </tr>
+            <tr>
+                <td style="font-size:17px !important;">Address Line 2 <span class="text-warning">*</span> :</td> :</td>
+                <td><input type="text" name="address_line_2" class="form-control form-control-sm" /></td>
+            </tr>
+            <tr>
+                <td style="font-size:17px !important;">City/District <span class="text-danger">*</span> :</td>
+                <td>
+                    <select name="city" style="width:60%;" required class="form-control form-control-sm">
+                        <option value="">SELECT</option>
+                        {{#each cities}}
+                            <option value="{{this.id}}">{{this.city_name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-size:17px !important;">Country <span class="text-danger">*</span> :</td>
+                <td>
+                    <select name="country" style="width:60%;" required class="form-control form-control-sm">
+                         {{#each countries}}
+                            <option value="{{this.id}}" {{#ifeq this.is_default 1}}selected{{/ifeq}}>{{this.country}}
+                            </option>
+                        {{/each}}
+                    </select>
+                </td>
+            </tr>
+            
+        </table>
+        </fieldset>
+        
+    </div>
+    <div class="col-6">
+        <h2 class="text-center">FORM GUIDE</h2>
+        <hr>
+        <ol>
+            <li class="mt-2"> <i>All form fields marked with a red asterisk (<h3 class="d-inline text-danger">*</h3>) are md-inline andotory. make sure you complete all required fields before submission.</i>  </li>
+
+            <li class="mt-2"> <i>Fields marke with a yellow asterisk (<h3 class="d-inline text-warning">*</h3>)</i> md-inline eans that you are only required to fill in atleast one of them.</li>
+        </ol>
+    </div>
+    <div class="col-6 text-right">
+          <button type="reset" class="btn text-white mt-3 btn-lg btn-warning block flat">
+                        Clear Form <i class="icon refresh"></i>
+                    </button> | 
+         <button type="submit" class="btn text-white mt-3  btn-lg bg-theme block flat">
+                        Submit Details <i class="icon cloud"></i>
+                    </button> 
+                  
+    </div>
+</form>
+
+<script>
+    $('#new_branch_form').submit((e)=>{
+        e.preventDefault();
+        const data = getFormData('new_branch_form')
+        CreateBranch(data)
+    })
+
+    let CreateBranch = (data)=>{
+        const options = {
+            method:"POST",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(data)
+        }
+
+        fetch(`${BaseURL}/branches`, options)
+        .then(res=>res.json())
+        .then(res=>{
+            toast(res.message, res.status)
+            if(res.status == 'success'){
+                setTimeout(()=>{
+                    location = 'branch-view?code='+data.branch_code
+                },2000)
+            }
+        }).catch(err=>{
+            console.log(err)
+            toast('Connection Error: The server was not reachable!', 'error')
+        })
+    }
+</script>

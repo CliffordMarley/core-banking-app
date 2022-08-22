@@ -1,0 +1,60 @@
+<div class="row pr-2">
+    <div class="col-12">
+        <h3 class="bg-theme text-white p-2" style="font-family: orbitron;">Manage Branches<i
+                class="icon "></i></h3>
+        <hr>
+    </div>
+    <div class="col-10">
+         <fieldset class="border border-secondary py-4 px-2 tatata">
+                <legend style="font-size: 16px;">Bank Branches</legend>
+                <div class="row">
+                    <div class="col-12">
+                        <table class="ui table tiny celled hover" id="branch_table">
+                            <thead>
+                                <th class="">Code</th>
+                                <th class="">Branch_Name</th>
+                                <th class="">Physical_Location_Address</th>
+                                <th class="">Phone_Number</th>
+                                <th class="">Email_Address</th>
+                                <th class="">Status</th>
+                                <th class=""></th>
+
+                            </thead>
+                            <tbody>
+                            {{#each branches}}
+                            <tr>
+                                <td>{{this.branch_code}}</td>
+                                <td>{{this.branch_name}}</td>
+                                <td>{{this.address_line_1}}, {{this.address_line_2}}, {{this.city}}</td>
+                                <td>{{this.contact_phone}}</td>
+                                <td>{{this.contact_email}}</td>
+                                <td>{{this.status}}</td>
+                                <td><a href="/branch-view?code={{this.branch_code}}" class="ui circular positive button mini icon info">Manage</a></td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                        </table>
+                        
+                    </div>
+                </div>
+        </fieldset>
+    </div>
+    <div class="col-2 " style="height:50vh;">
+         <h3 class="bg-theme text-white p-2" style="font-family: orbitron;">Action<i
+                class="icon "></i></h3>
+        <hr>
+        <a href="branch-create" class="btn btn-lg bg-theme flat btn-block text-white">New Branch</a>
+        <a href="branch-list" class="btn btn-lg bg-theme flat btn-block active text-white">View List</a>
+
+    </div>
+</div>
+
+<script>
+    let branch_table
+
+    $(document).ready(()=>{
+        branch_table = $("#branch_table").DataTable({
+            pageLength:10
+        })
+    })
+</script>

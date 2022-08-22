@@ -1,0 +1,100 @@
+
+
+
+<div class="ui grid pt-3">
+    <div class="three wide column  border border-right-secondary" style="border-left:5px solid #2D61A5 !important;" id="services_column">
+        {{>services}}
+    </div>
+    <div class="thirteen wide column"  id="view_column">
+        <div class="row" id="alert-section">
+            {{#ifnoteq message undefined}}
+            {{#ifnoteq message ''}}
+            <div class="col-12 pr-2">
+                <div class="alert alert-{{message.type}} alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{message.message}}
+                </div>
+            {{/ifnoteq}}
+            {{/ifnoteq}}
+        </div>
+        {{#ifeq partial '404'}}
+        {{>404}}
+        {{/ifeq}}
+        {{#ifeq partial 'customer-lookup'}}
+        {{>customer-lookup}}
+        {{/ifeq}}
+        {{#ifeq partial 'customer-create'}}
+        {{>test}}
+        {{/ifeq}}
+        {{#ifeq partial 'transact-deposit'}}
+        {{>transact-deposit}}
+        {{/ifeq}}
+        {{#ifeq partial 'transact-withdrawal'}}
+        {{>transact-withdrawal}}
+        {{/ifeq}}
+        {{#ifeq partial 'transact-my-history'}}
+        {{>transact-my-history}}
+        {{/ifeq}}
+        {{#ifeq partial 'daily-session'}}
+        {{>daily-session}}
+        {{/ifeq}}
+        {{#ifeq partial 'branch-management'}}
+        {{>branch-management}}
+        {{/ifeq}}
+        {{#ifeq partial 'initiate-reversal'}}
+        {{>initiate-reversal}}
+        {{/ifeq}}
+        {{#ifeq partial 'transaction-charges'}}
+        {{>transaction-charges}}
+        {{/ifeq}}
+        {{#ifeq partial 'card-create'}}
+        {{>card-create}}
+        {{/ifeq}}
+        {{#ifeq partial 'chart-of-accounts'}}
+        {{>chart-of-accounts}}
+        {{/ifeq}}
+        {{#ifeq partial 'kyc_cdd'}}
+            {{>kyc_cdd}}
+        {{/ifeq}}
+        {{#ifeq partial 'non-transactional-authorizations-customer'}}
+            {{>non-transactional-authorizations-customer}}
+        {{/ifeq}}
+        {{#ifeq partial 'non-transactional-authorizations-changes'}}
+            {{>non-transactional-authorizations-changes}}
+        {{/ifeq}}
+        {{#ifeq partial 'branch-list'}}
+            {{>branch-list}}
+        {{/ifeq}}
+        {{#ifeq partial 'branch-create'}}
+            {{>branch-create}}
+        {{/ifeq}}
+        {{#ifeq partial 'branch-view'}}
+            {{>branch-view}}
+        {{/ifeq}}
+        {{#ifeq partial 'individual-customer-view'}}
+            {{>individual-customer-view}}
+        {{/ifeq}}
+        {{#ifeq partial 'account-create'}}
+            {{>account-create}}
+        {{/ifeq}}
+    </div>
+
+</div>
+</div>
+
+<script type="text/javascript" defer src="lib/DataTable/jquery.dataTables.min.js"></script>
+<script type="text/javascript" defer src="lib/DataTable/dataTables.buttons.min.js"></script> 
+<script type="text/javascript" defer src="lib/DataTable/jszip.min.js"></script>
+<script type="text/javascript" defer src="lib/DataTable/buttons.html5.min.js"></script>
+<script>
+    $(document).ready(() => {
+        //<i class="icon chevron right">
+        let icon = document.createElement('i');
+        icon.setAttribute('class', 'icon chevron right');
+        $("#mx-services li a").prepend(icon);
+
+    });
+
+</script>

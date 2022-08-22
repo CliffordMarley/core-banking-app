@@ -1,0 +1,388 @@
+<div class="row mr-2" id="account_display">
+
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12">
+                <h3 style="font-family: orbitron;" class="bg-theme text-white p-2 mb-3 py-1">
+                    <i class="icon user circle"></i> <span class="account_name">Individual Customer Block | ( <span
+                            class="">{{customer.member_id}}</span> )</span>
+                </h3>
+
+            </div>
+            <div class="col-12">
+                <a href="customer-lookup" style="text-decoration: none;" onclick="backButtonClick()">
+                    <i class="icon arrow circular left"></i> Back
+                </a>
+                <hr>
+            </div>
+            <div class="col-lg-12">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                            aria-controls="home" aria-selected="true">Customer Basic Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#transactions" role="tab"
+                            aria-controls="profile" aria-selected="false">Account Operations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#history" role="tab"
+                            aria-controls="contact" aria-selected="false">History</a>
+                    </li>
+                </ul>
+                <div class="tab-content pt-3" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row ">
+
+                            <div class="col-4">
+
+                                <fieldset class="border border-secondary p-1 px-2 ui segment kyc_segment"
+                                    style="height:100%;background:none;border-radius:none;">
+                                    <legend style="font-size: 14px;">ID Details</legend>
+                                    <div style="height: 25vh;background-image:url('uploads/{{#each customer.kyc}}{{#ifeq this.primary_id 1}}{{this.url}}{{/ifeq}}{{/each}}');"
+                                        class="ui image kyc_display_image">
+
+                                    </div>
+
+                                    <table class="table table-sm table-bordered mt-2" id="kyc_details_display">
+                                        <tbody>
+                                            {{#each customer.kyc}}
+                                                {{#ifeq this.primary_id 1}}
+                                                    <tr>
+                                                        <td>ID TYPE :</td>
+                                                        <td class="id_type">{{this.document_type}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>ID NUMBER :</td>
+                                                        <td class="id_number">{{this.id_number}}</td>
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td>DATE ISSUED :</td>
+                                                        <td class="issue_date">{{this.issue_date}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>EXPIRY DATE :</td>
+                                                        <td class="expiry_date">{{this.expiry_date}}</td>
+                                                    </tr>
+                                                {{/ifeq}}
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
+                                    {{!-- <button type="button" data-toggle="modal" id="InitializeDates"
+                                        data-target="#kycModal" data-backdrop="static"
+                                        class="ui button mini right floated primary icon">
+                                        Set / Update
+                                    </button> --}}
+                                </fieldset>
+
+                            </div>
+                            <div class="col-md-8 col-lg-8  mini">
+                                <fieldset class=" border border-secondary py-0" style="height: 100%;">
+                                    <legend style="font-size: 14px;">Account Details</legend>
+                                    <form class="my-0 m-0 py-0 pt-2 " id="update_form">
+                                        <table class="table table-sm table-bordered" style="width: 100%;"
+                                            id="view_table">
+                                            <tr>
+
+                                                <td><label>Title</label></td>
+                                                <td>
+                                                    <input type="text" name="member_id" hidden
+                                                        value="{{customer.member_id}}">
+                                                    <select name="title" style="width:15% !important;" disabled
+                                                        class="form-control form-control-sm form-control form-control-sm-sm">
+                                                        <option {{#ifeq customer.title 'Mr' }} selected {{/ifeq}}
+                                                            value="Mr">Mr</option>
+                                                        <option {{#ifeq customer.title 'Ms' }} selected {{/ifeq}}
+                                                            value="Ms">Ms</option>
+                                                        <option {{#ifeq customer.title 'Dr' }} selected {{/ifeq}}
+                                                            value="Dr">Dr</option>
+                                                        <option {{#ifeq customer.title 'Prof' }} selected {{/ifeq}}
+                                                            value="Prof">Prof</option>
+                                                        <option {{#ifeq customer.title 'Rev' }} selected {{/ifeq}}
+                                                            value="Rev">Rev</option>
+                                                        <option {{#ifeq customer.title 'Chief' }} selected {{/ifeq}}
+                                                            value="Chief">Chief</option>
+                                                        <option {{#ifeq customer.title 'Hon' }} selected {{/ifeq}}
+                                                            value="Hon">Hon</option>
+                                                        <option {{#ifeq customer.title 'H.E' }} selected {{/ifeq}}
+                                                            value="H.E">H.E</option>
+                                                        <option {{#ifeq customer.title 'Gen' }} selected {{/ifeq}}
+                                                            value="Gen">Gen</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Customer Name :</td>
+                                                <td>
+                                                    <input style="width:45% !important;" placeholder="Firstname"
+                                                        type="text" name="firstname" value="{{customer.firstname}}"
+                                                        readonly class="form-control form-control-sm d-inline  my-1 form-control form-control-sm-sm">
+
+                                                    <input placeholder="Lastname" name="lastname"
+                                                        style="width:45% !important;" type="text"
+                                                        value="{{customer.lastname}}" readonly
+                                                        class="form-control form-control-sm d-inline  my-1 form-control form-control-sm-sm">
+
+                                                    <input style="width:50% !important;" placeholder="Othername(s)"
+                                                        name="othernames" type="text" value="{{customer.othernames}}"
+                                                        readonly class="form-control form-control-sm my-1   d-inline form-control form-control-sm-sm">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sex :</td>
+                                                <td>
+                                                    <select name="gender" style="width:25% !important;" disabled
+                                                        class="form-control form-control-sm form-control form-control-sm-sm">
+                                                        <option {{#ifeq customer.gender 'MALE' }} selected {{/ifeq}}
+                                                            value="MALE">Male</option>
+                                                        <option {{#ifeq customer.gender 'FEMALE' }} selected {{/ifeq}}
+                                                            value="FEMALE">Female</option>
+                                                        <option {{#ifeq customer.gender 'OTHER' }} selected {{/ifeq}}
+                                                            value="Other">Other</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Date Of Birth :</td>
+                                                <td>
+                                                    <div class="ui disabled calendar" id="date_calendar">
+                                                        <div class="ui input left icon">
+                                                            <i class="calendar icon"></i>
+                                                            <input type="text" value="{{customer.dob}}" name="dob"
+                                                                class="form-control form-control-sm form-control form-control-sm-sm"
+                                                                placeholder="Pick Date">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nationality :</td>
+                                                <td>
+
+                                                    <select value="{{customer.nationality_id}}" name="nationality"
+                                                        style="width:25% !important;" disabled
+                                                        class="form-control form-control-sm form-control form-control-sm-sm">
+
+                                                        {{#each countries}}
+                                                            <option {{#ifeq this.selected true}} selected {{/ifeq}}
+                                                                value="{{this.id}}">{{this.country}}</option>
+                                                        {{/each}}
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Marital Status:</td>
+                                                <td>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="radio"
+                                                                class="marital_status_radio form-check-input" {{#ifeq
+                                                                customer.marital_status 'SINGLE' }} checked {{/ifeq}}
+                                                                disabled value="SINGLE" name="marital_status">Single
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="radio" {{#ifeq
+                                                                customer.marital_status 'MARRIED' }} checked {{/ifeq}}
+                                                                disabled class="marital_status_radio form-check-input"
+                                                                value="MARRIED" name="marital_status">Married
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline disabled">
+                                                        <label class="form-check-label">
+                                                            <input type="radio" {{#ifeq
+                                                                customer.marital_status 'DIVORCED' }} checked {{/ifeq}}
+                                                                disabled class="marital_status_radio form-check-input"
+                                                                value="DIVORCED" name="marital_status">Divorced
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline disabled">
+                                                        <label class="form-check-label">
+                                                            <input type="radio" {{#ifeq
+                                                                customer.marital_status 'SEPARATED' }} checked {{/ifeq}}
+                                                                disabled class="marital_status_radio form-check-input"
+                                                                value="SEPARATED" name="marital_status">Separated
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline disabled">
+                                                        <label class="form-check-label">
+                                                            <input type="radio" {{#ifeq
+                                                                customer.marital_status 'WIDOWED' }} checked {{/ifeq}}
+                                                                disabled class="marital_status_radio form-check-input"
+                                                                value="WIDOWED" name="marital_status">Widowed
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                        <div class="row my-2">
+                                            <div class="col-12 text-center">
+                                                <h6 id="edit_change" class="text-center mb-4 d-none">
+                                                    <span style="font-weight: bold;">NOTE:</span> Editable fields are
+                                                    highlighted in green!
+                                                </h6>
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="submit" id="saveChangesBtn"
+                                                    class="btn btn-sm d-none btn-success mx-1 float-right">Save
+                                                    Changes</button>
+                                                <button type="button" id="enableEditingBtn" onclick="toggleChanges()"
+                                                    class="btn btn-sm btn-warning mx-1 float-right">Update</button>
+                                                <button type="button" onclick="toggleChanges()" id="cancelEditingBtn"
+                                                    class="btn d-none btn-sm btn-danger mx-1 float-right">Cancel</button>
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </fieldset>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="transactions" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-12 mt-3">
+
+                               
+                                <button data-toggle="modal" data-target="#newAccountModal" data-backdrop="static"
+                                    class="btn btn-lg flat text-white bg-theme">Create New Account <i
+                                        class="icon wallet"></i></button>
+                                <button class="btn btn-lg flat text-white bg-theme">Contraints Customization <i
+                                        class="icon project diagram"></i></button>
+                                <hr>
+                            </div>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12 portions" id="accounts_list">
+                                        <fieldset class=" border border-secondary py-3 pt-4">
+                                            <legend class="text-danger" style="font-size:14px;">All Accounts</legend>
+                                            <div class="row">
+                                                <div class="col-12">
+
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-12 portions d-none" id="new_account">
+                                        <fieldset class=" border border-secondary py-3 pt-4">
+                                            <legend class="text-danger" style="font-size:14px;">New Account Form
+                                            </legend>
+                                            <div class="row">
+                                                <div class="col-12">
+
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="contact-tab">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="newAccountModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <form class="modal-content ui tiny form" method="POST" action="chart-of-accounts">
+                <div class="modal-header bg-theme">
+                    <h5 class="modal-title text-white text-cente">NEW ACCOUNT <i class="icon table"></i></h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="col-6 form-group">
+                            <label for="">Member ID :</label>
+                            <input type="text" readonly value="{{customer.member_id}}" class="form-control form-control-sm" required>
+                        </div>
+                        <div class="col-8">
+                            <label for="">Account Type :</label>
+                            <select name="account_type" class="form-control form-control-sm" required>
+                                <option value="">SELECT</option>
+                                {{#each coa}}
+                                    <option value="{{this.account_type}}">{{this.account_type_name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        {{!-- <div class="col-12 mt-2 form-group">
+                            <label for="">Account Name :</label>
+                            <input type="text" placeholder="Type a well crafted account name" name="account_name" class="form-control form-control-sm">
+                        </div> --}}
+                        <div class="col-6 form-group">
+                            <label for="">Branch :</label>
+                            <select name="class" class="form-control form-control-sm">
+                                {{#each branches}}
+                                <option value="{{this.branch_code}}">{{this.branch_name}} - ({{this.city}})</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="col-6 form-group">
+                            <label for="">Default Currency :</label>
+                            <select name="currency" class="form-control form-control-sm">
+                                
+                                {{#each currencies}}
+                                <option {{#ifeq this.is_default 1}} selected {{/ifeq}} value="{{this.id}}">{{this.currency}} ({{this.code}})</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="col-4 form-group">
+                            <label for="">Is Active?</label>
+                            <input type="checkbox" name="is_active" id="">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    let editable = false
+    $(document).ready(() => {
+        $("#update_form").submit(async (e) => {
+            e.preventDefault();
+            let data = getFormData('update_form');
+            console.log(data)
+            try {
+                await PostCustomerInformationChanges(data)
+                toggleChanges()
+                let message = `Changes to CIF ${data.member_id} have been posted. Awaiting approval!`
+                HeaderMessage(message, 'success')
+            } catch (err) {
+                HeaderMessage(err, 'danger')
+            }
+        })
+
+
+
+    })
+    function toggleChanges() {
+        if (editable == false) {
+            $('input, select').attr('disabled', false)
+            $('input, select').attr('readonly', false)
+            $("#enableEditingBtn").addClass('d-none')
+            $("#cancelEditingBtn, #saveChangesBtn").removeClass('d-none')
+        } else {
+            $('input, select').attr('disabled', true)
+            $('input, select').attr('readonly', true)
+            $("#enableEditingBtn").removeClass('d-none')
+            $("#cancelEditingBtn, #saveChangesBtn").addClass('d-none')
+        }
+        editable = !editable
+    }
+
+
+</script>
+<script type="text/javascript" src="js/customer.jsx"></script>

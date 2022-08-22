@@ -1,0 +1,165 @@
+h1,h2,h3,h4,h5,h6,legend,div,section,article,p,label, th{
+    margin:0;
+    padding:0;
+    font-family: 'Montserrat', 'roboto', sans-serif !important ;
+    font-weight:lighter !important;
+    font-display: fallback !important;
+}
+
+
+.flat{
+    border-radius: 0 !important;
+}
+.invalid_count_field{
+    border:thin solid red
+}
+
+.bg-theme{
+    background-color: #2D61A5 !important;
+}
+
+
+#accounts_search .ui.bottom.attached.tab.segment{
+    min-height: 70vh;
+}
+
+input, select{
+    font-family: 'roboto', sans-serif !important;
+    font-weight: 200 !important;
+    font-size: 16px !important;
+ }
+
+fieldset{
+    border:1px solid #cccc !important;
+ }
+ legend{
+     font-family:'Montserrat';
+ }
+
+.form-control{
+    font-family: 'Montserrat', 'roboto' !important;
+}
+
+#navigation_bar_top div ul li a, #navigation_bar_top .navbar-brand{
+    color:white;
+    font-weight: bold;
+}
+
+#navigation_bar_top div ul li.nav-item.active{
+    background-color: white;
+    
+}
+
+#navigation_bar_top div ul li.nav-item.active a{
+    color: #2D61A5;
+}
+
+#show-list .list-group-item.list-group-item-action:hover{
+    background-color: #2D61A5 !important;
+    color:white !important;
+}
+
+#show-list .list-group-item.list-group-item-action{
+    font-size: 13px;
+    font-weight: bold;
+    color:black;
+    padding:.6em;
+}
+
+.changeableFields.highlight-fields{
+    border: 2px solid green !important;
+    color:red !important;
+}
+
+#kyc_details_display tbody tr, #kyc_details_display tbody tr td{
+    padding:0;
+    font-size: 16px;
+    font-family: Montserrat 'roboto' !important;
+    font-weight: lighter !important;
+}
+
+#balances_table tr th{
+    font-family: Montserrat;
+}
+.kyc_display_image{
+    border-radius: 5px/5px;
+    background: rgb(189, 189, 189);
+    border:2px solid black;
+    background-image: url('../images/IDCARD_PH.png');
+    width:100%;
+    background-position: top center;
+    background-size: contain;
+    background-clip: border-box;
+    background-origin: border-box;
+    background-repeat: no-repeat;
+}
+
+#kyc_details_display tbody tr td{
+    font-family: 13px !important;
+    font-weight:bold !important;
+}
+#display_table_ui{
+    width:100% !important;
+}
+#display_table_ui tbody, #display_table_ui thead{
+    padding:1.2em !important;
+}
+
+#display_table_ui tbody tr{
+    border:2px solid black !important;
+    border-radius: 10px/10px !important;
+}
+.nav-item .navlink.active{
+    background-color: #2D61A5 !important;
+    color:white !important;
+}
+
+.text-theme{
+    color:#2D61A5 !important;
+}
+
+body{
+    background-color: rgb(241, 241, 241);
+}
+
+.btn.bg-theme.active{
+    color:#2D61A5 !important;
+    background-color:white !important;
+    border:1px solid #2D61A5 !important;
+}
+
+ .btn.bg-theme:hover{
+       color:#2D61A5 !important;
+    background-color:white !important;
+    border:1px solid #2D61A5 !important;
+ }
+
+ .dataTables_filter input { height: 24px }
+.btn-sq-lg {
+    width: 150px !important;
+    height: 150px !important;
+  }
+  
+  .btn-sq {
+    width: 100px !important;
+    height: 100px !important;
+    font-size: 10px;
+  }
+  
+  .btn-sq-sm {
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 10px;
+  }
+  
+  .btn-sq-xs {
+    width: 25px !important;
+    height: 25px !important;
+    padding:2px;
+  }
+  
+  fieldset {
+    padding-top: 2em;
+    font:80%/1 sans-serif;
+    border:1px solid black;
+}

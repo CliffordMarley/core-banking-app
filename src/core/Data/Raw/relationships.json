@@ -1,0 +1,19 @@
+[
+    {"name":"Husband"},
+    {"name":"Wife"},
+    {"name":"Son"},
+    {"name":"Daughter"},
+    {"name":"Brother"},
+    {"name":"Sister"},
+    {"name":"Grand father"},
+    {"name":"Grand mother"},
+    {"name":"Father"},
+    {"name":"Mother"},
+    {"name":"Cousin"},
+    {"name":"Uncle"},
+    {"name":"Aunt"},
+    {"name":"Nephew"},
+    {"name":"Niece"},
+    {"name":"Friend"},
+    {"name":"Other"}
+]

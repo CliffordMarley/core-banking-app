@@ -1,0 +1,206 @@
+<link rel="stylesheet" href="css/accounts.css">
+<form class="row ui form " id="search_form">
+    <div class="col-12">
+        <h3 style="font-family: orbitron;" class="bg-theme text-white p-2 mb-3 py-1">Customer Lookup</h3>
+    </div>
+    <div class="col-4">
+        <fieldset class="card border border-secondary py-0">
+            <legend style="color:black;font-weight:bold;font-size:14px;">Customer Type</legend>
+            <div class="card-body pt-1">
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="radio" class="customer_type_radio form-check-input" value="INDIVIDUAL" checked
+                            name="customer_type">Individual
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="radio" class="customer_type_radio form-check-input" value="JOINT"
+                            name="customer_type">Joint
+                    </label>
+                </div>
+                <div class="form-check-inline disabled">
+                    <label class="form-check-label">
+                        <input type="radio" class="customer_type_radio form-check-input" value="CORPORATE"
+                            name="customer_type">Corporate
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="card border px-3 border-secondary py-0 pt-2 mt-2">
+            <legend style="color:black;font-weight:bold;font-size:14px;">Corporate Specific</legend>
+            <div class="row" id="agent_filter">
+                <div class="col-12">
+                    <table class=" table table-sm " style="border:0;" id="search_table">
+                        <tbody>
+                             <tr>
+                                 <td><label for="">Reg_Number:</label></td>
+                                 <td>
+                                     <input type="text" onkeyup="this.value = this.value.toUpperCase()" name="corporate_reg_number"
+                            placeholder="Type Here..." class="form-control form-control-sm">
+                                 </td>
+                             </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="col-5">
+        <fieldset class="card border border-secondary py-0">
+            <legend style="font-size:14px;">General Information</legend>
+            <div class="card-body my-0 py-0">
+                <div action="#" class="">
+                    <table class=" table table-sm " style="border:0;" id="search_table">
+                        <tbody>
+                             <tr>
+                                <td style="padding-top:13px !important;">Customer_Ref:</td>
+                                <td> <input type="text" name="customer_ref" value=""
+                                        class="form-control form-control-sm" placeholder="Customer Reference Here...">
+                                </td>
+                            </tr>
+                            <tr class="for_individual d-none">
+                                <td style="padding-top:13px !important;">ID Type :</td>
+                                <td style="padding-top:4px !important;">
+                                     <select name="id_type" class="form-control form-control-sm" >
+                                            <option value="" selected>National ID</option>
+                                        </select>
+                                    <input type="text" style="width:60% !important;"
+                                        class="form-control form-control-sm" name="id_number" placeholder="ID Number">
+
+                                       
+                                </td>
+                            </tr>
+                           
+                            <tr>
+                                <td style="padding-top:13px !important;">Customer_Name:</td>
+                                <td>
+                                    <input type="text" name="customer_name" placeholder="Customer Name" class="form-control form-control-sm d-inline">
+                                </td>
+                            </tr>
+                            
+
+                            <tr>
+                                <td style="padding-top:4px !important;">Date Created :</td>
+                                <td style="padding-top:4px !important;"> <input type="date" name="date_created"
+                                        style="width:100% !important;" class="form-control d-inline form-control-sm">
+                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+    <div class="col-3">
+        <a href="customer-create" class="btn btn-block btn-md bg-theme flat text-white" style="width:90%;">
+            Register New CIF <i class="icon circular user"></i>
+        </a>
+        <hr>
+        <fieldset class="card py-0 border border-secondary">
+            <legend style="font-size:14px;">Actions</legend>
+            <button type="button" id="search_btn" class="ui button icon  positive my-1 mt-3 tint fluid">
+                Post Query <i class="icon search"></i>
+            </button>
+            
+        </fieldset>
+        
+    </div>
+    
+</form>
+<div class="row">
+    <div class="col-12"><hr></div>
+    
+
+    <div class="col-11">
+        <fieldset class="my-3">
+             <legend style="font-size:14px;">Search Results</legend>
+             <table class="table ui tiny celled striped" id="customer_listing_table">
+                 <thead>
+                    <th>CIF RefID</th>
+                    <th>Customer_Full_Name</th>
+                    <th>Date_Of_Birth</th>
+                    <th>Sex</th>
+                    <th>Nationality</th>
+                    <th>Status</th>
+                    <th>Date Created</th>
+                    <th></th>
+                 </thead>
+                 <tbody>
+
+                 </tbody>
+             </table>
+        </fieldset>
+    </div>
+</div>
+
+
+
+<script>
+
+    let customer_listing_table
+    $(document).ready(() => {
+
+        customer_listing_table = $("#customer_listing_table").DataTable({
+            pageLength:10
+        })
+
+        $("#search_btn").click((e)=>{
+            //e.preventDefault()
+            //alert('Search stopped!')
+            const SearchForm = getFormData("search_form")
+            console.log(SearchForm)
+            CustomerSearch(SearchForm, (res)=>{
+                if(res != 'error'){
+                    console.log(res)
+                    if(SearchForm.customer_type == 'INDIVIDUAL'){
+                        RenderCustomerListTable(res)
+                    }
+                }
+            })
+        })
+    });
+
+    let RenderCustomerListTable = (data)=>{
+        customer_listing_table.destroy()
+        let DOM = data.map(customer=>{
+            return `<tr>
+                         <td>${customer.member_id}</td>
+                         <td>${customer.title}. ${customer.lastname} ${customer.firstname} ${customer.othernames}</td>
+                         <td>${customer.dob}</td>
+                         <td>${customer.gender}</td>
+                         <td>${customer.nationality}</td>
+                         <td>${customer.status}</td>
+                         <td>${customer.created_at}</td>
+                         <td>
+                             <a href="individual-customer-view?member_id=${customer.member_id}">Open</a>
+                         </td>
+                     </tr>`
+        })
+        DOM  = DOM.join(',')
+        $("#customer_listing_table tbody").html(DOM)
+        customer_listing_table = $("#customer_listing_table").DataTable({
+            pageLength:5
+        })
+        
+    }
+
+</script>
+<script src="js/customer.jsx"></script>
+{{!-- <script src="js/transactions.jsx"></script> --}}
+<script>
+    
+</script>
+
+<style>
+    #accounts_table thead th{
+        color:white !important;
+    }
+    tbody tr td{
+        font-family: 'nuni-reg' !important;
+        font-size: 13px !important;
+    }
+</style>

@@ -1,0 +1,107 @@
+
+<form action="/non-transactional-authorizations" method="POST" class="row pr-2">
+    <div class="col-12">
+        <h3 class="bg-theme text-white p-2" style="font-family: orbitron;">
+            Non Transactional Authorizations<i class="icon check circular"></i></h3>
+        <hr>
+    </div>
+    <div class="col-12">
+        <fieldset class="card border border-secondary py-3">
+            <legend style="color:rgb(185, 16, 16);font-weight:bold;font-size:14px;">Authorization Topics</legend>
+            <div class="row">
+                <div class="col-12">
+                    <a href="non-transactional-authorizations-customer"  class="btn active btn-lg bg-theme text-white flat">New Customer</a> | 
+                    <a href="non-transactional-authorizations-changes" class="btn btn-lg  bg-theme text-white flat">Changes To CIF</a> | 
+                    <button class="btn btn-lg bg-theme text-white flat">Staff Access</button> |
+                    <button class="btn btn-lg bg-theme text-white flat">Password Reset</button>
+                </div>
+                
+            </div>
+        </fieldset>
+    </div>
+     <div class="col-9 mt-4">
+        <fieldset class="card border border-secondary py-3" id="unauthorised_customers">
+            <legend style="color:rgb(185, 16, 16);font-weight:bold;font-size:14px;">Unauthorized Customers</legend>
+            <div class="row">
+                <div class="col-12 customer_awaiting_approval">
+                    <table class="ui table tiny hover celled" id="customer_table">
+                        <thead>
+                            <th class="bg-theme text-white">Member_ID</th>
+                            <th class="bg-theme text-white">Customer_Name</th>
+                            <th class="bg-theme text-white">Gender</th>
+                            <th class="bg-theme text-white">Date_Of_Birth</th>
+                            <th class="bg-theme text-white">Country</th>
+                            <th class="bg-theme text-white">Marital_Status</th>
+                            <th class="bg-theme text-white"></th>
+                            <th class="bg-theme text-white"></th>
+                        </thead>
+                        <tbody>
+                            {{#each unapproved_members}}
+                                <tr>
+                                    <td>{{this.member_id}}</td>
+                                    <td>{{this.lastname}} {{this.firstname}} {{returnOnlyZeroindex this.othernames}}.</td>
+                                    <td>{{this.gender}}</td>
+                                    <td>{{this.dob}}</td>
+                                    <td>{{this.nationality}}</td>
+                                    <td>{{this.marital_status}}</td>
+                                    <th>
+                                        <a href="#" onclick="ComposeMemberProfile('{{this.member_id}}')" data-toggle="modal" data-target="#cif_modal" data-backdrop="static" >Review </a>
+                                    </th>
+                                    <td>
+                                        <input type="checkbox" name="member_id" value="{{this.member_id}}" id="">
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+     <div class="col-3 mt-2">
+        <fieldset class="border border-secondary py-3">
+            <legend style="color:rgb(185, 16, 16);font-weight:bold;font-size:14px;">Action</legend>
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" name="decision" value="ACTIVE" class="button btn btn-md btn-block btn-success flat">AUTHORIZE <i class="icon check circular"></i></button>
+                    {{!-- <button class="button btn btn-md btn-block btn-secondary flat">Order More Info <i class="icon info circular"></i></button> --}}
+                    <button value="rejected" name="decision" type="submit" class="button btn btn-md btn-block btn-danger flat">REJECT <i class="icon close"></i></div>
+                    
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</form>
+
+
+<div class="modal fade" id="cif_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <form class="modal-content ui tiny form" method="POST" action="chart-of-accounts">
+      <div class="modal-header bg-theme">
+        <h5 class="modal-title text-white" style="font-family:monaco;">CUSTOMER INFORMATION FILE REVIEW ( <span id="member_id"></span>  ) <i class="icon user circular"></i></h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="user_profile_section">
+            
+      </div>
+      <div class="modal-footer">
+        <button  class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
+      </div>
+    </form>
+  </div>
+</div>
+<style>
+    tr td{
+        font-family: monaco !important;
+    }
+</style>
+<script>
+    $(document).ready(()=>{
+        $('#customer_table').DataTable({
+            pageLength:10
+        })
+    })
+</script>
+<script src="js/customer.jsx"></script>

@@ -1,0 +1,366 @@
+<div class="row pr-2">
+    <div class="col-12">
+        <h3 class="bg-theme text-white p-2" style="font-family: orbitron;">Register Customer Information File (Step 1)
+            <i class="icon user circular"></i></h3>
+
+        <hr>
+    </div>
+
+</div>
+<div class="row" id="step_1">
+    {{!-- <div class="col-1">
+        <a href="account-lookup" class="ui button circular icon medium basic primary"><i class="icon arrow left"></i></a>
+    </div> --}}
+     <div class="col-12 py-2">
+        <a href="customer-create" class="btn flat  reg_toggle btn-lg bg-theme active text-theme">Customer Info Section</a> | 
+        <a href="customer-kyc-cdd" class="btn flat  reg_toggle btn-lg bg-theme text-white">Identity Section</a>
+
+    </div>
+    <form class="col-6 ui form tiny mini " id="basic_details_form">
+        <fieldset class="border border-secondary p-1 px-2 tatata">
+            <legend style="font-size: 14px;">Customer Basic Details</legend>
+
+            <div class="form-row mt-3">
+                <div class="col-3 form-group">
+                    <label for="">Title :</label>
+                    <select name="title" style="padding: 3px !important;" class="form-control">
+                        <option value="">SELECT</option>
+                        <option value="Mr">Mr</option>
+                        <option value="Ms">Ms</option>
+                        <option value="Dr">Dr</option>
+                        <option value="Prof">Prof</option>
+                        <option value="Rev">Rev</option>
+                        <option value="Chief">Chief</option>
+                        <option value="Hon">Hon</option>
+                        <option value="H.E">H.E</option>
+                        <option value="Gen">Gen</option>
+                    </select>
+                </div>
+                <div class="col-4 form-group">
+                    <label for="">Firstname :</label>
+                    <input type="text" name="firstname" placeholder="e.g Jon" class="form-control form-control-sm ">
+                </div>
+                <div class="col-5 form-group">
+                    <label for="">Lastname :</label>
+                    <input type="text" name="lastname" placeholder="e.g Smith" class="form-control form-control-sm">
+                </div>
+                <div class="col-12 form-group">
+                    <label for="">Other Name (s) :</label>
+                    <input type="text" name="othernames" placeholder="(Optional)" class="form-control form-control-sm ">
+                </div>
+                <div class="col-4 form-group">
+                    <fieldset class="card border border-secondary py-0">
+                        <legend style="color:black;font-weight:bold;font-size:14px;">Gender</legend>
+                        <div class="card-body p-2">
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="gender_radio form-check-input" value="MALE"
+                                        name="gender">Male
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="gender_radio form-check-input" value="FEMALE"
+                                        name="gender">Female
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-8 form-group">
+                    <fieldset class="card border border-secondary py-0">
+                        <legend style="color:black;font-weight:bold;font-size:14px;">Marital Status</legend>
+                        <div class="card-body p-2">
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="marital_status_radio form-check-input" value="SINGLE"
+                                        name="marital_status">Single
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="marital_status_radio form-check-input" value="MARRIED"
+                                        name="marital_status">Married
+                                </label>
+                            </div>
+                            <div class="form-check-inline disabled">
+                                <label class="form-check-label">
+                                    <input type="radio" class="marital_status_radio form-check-input" value="DIVORCED"
+                                        name="marital_status">Divorced
+                                </label>
+                            </div>
+                            <div class="form-check-inline disabled">
+                                <label class="form-check-label">
+                                    <input type="radio" class="marital_status_radio form-check-input" value="SEPARATED"
+                                        name="marital_status">Separated
+                                </label>
+                            </div>
+                            <div class="form-check-inline disabled">
+                                <label class="form-check-label">
+                                    <input type="radio" class="marital_status_radio form-check-input" value="WIDOWED"
+                                        name="marital_status">Widowed
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="col-4 form-group">
+                    <label for="">Date Of Birth :</label>
+                    {{!-- <input type="date" class="form-control form-control-sm" name="dob" > --}}
+                    <div class="ui calendar" id="date_calendar">
+                        <div class="ui input left icon">
+                            <i class="calendar icon"></i>
+                            <input type="text" name="dob" placeholder="Pick Date">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 form-group">
+                    <label for="">Nationality :</label>
+                    <select name="nationality" style="padding: 3px !important;"
+                        class="ui selection form-control form-control-sm">
+                        <option value="">Select</option>
+                        {{#each countries}}
+                            <option value="{{this.id}}" {{#ifeq this.is_default 1}}selected{{/ifeq}}>{{this.country}}
+                            </option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="col-4 form-group">
+                    <label for="">Employment :</label>
+                    <select name="employment_status" id="employment_status" style="padding: 3px !important;"
+                        class="ui selection form-control form-control-sm">
+                        <option value="">SELECT</option>
+                        <option value="UNEMPLOYED">UNEMPLOYED</option>
+                        <option value="EMPLOYED">EMPLOYED</option>
+                        <option value="SELF-EMPLOYED">SELF-EMPLOYED</option>
+                    </select>
+                </div>
+
+
+            </div>
+
+        </fieldset>
+
+    </form>
+    <div class="col-4">
+        <fieldset class="border border-secondary p-1 px-2 tatata">
+            <legend style="font-size: 14px;">Contact Information</legend>
+            <form id="contacts_form" class=" form-row mt-2">
+                <div class="col-12 form-group">
+                    <label for="">Address Line 1</label>
+                    <input type="text" name="address_line_1" placeholder="e.g Lot 6737C"
+                        class="form-control form-control-sm">
+                </div>
+                <div class="col-8 form-group">
+                    <label for="">Address Line 2</label>
+                    <input type="text" name="address_line_2" placeholder="e.g Victoria Avenue"
+                        class="form-control form-control-sm">
+                </div>
+                <div class="col-4 form-group">
+                    <label for="">City :</label>
+                    <select name="city" class="form-control form-control-sm">
+                        <option value="">SELECT</option>
+                        {{#each cities}}
+                            <option value="{{this.id}}">{{this.city_name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="col-12 form-group">
+                    <fieldset class="card border border-secondary py-0">
+                        <legend style="color:black;font-weight:bold;font-size:14px;">Residency</legend>
+                        <div class="card-body p-2">
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="residency_radio form-check-input" value="RESIDENT"
+                                        checked name="residency">Resident
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="residency_radio form-check-input" value="NON_RESIDENT"
+                                        name="residency">Non-Resident
+                                </label>
+                            </div>
+                            <div class="form-check-inline disabled">
+                                <label class="form-check-label">
+                                    <input type="radio" class="residency_radio form-check-input" value="REFUGEE"
+                                        name="residency">Refugee
+                                </label>
+                            </div>
+
+                        </div>
+                    </fieldset>
+
+                </div>
+
+
+                <div class="col-7 form-group">
+                    <label for="">Email Address :</label>
+                    <input type="email" name="email_address" placeholder="Email Address"
+                        class="form-control form-control-sm">
+                </div>
+                <div class="col-5 form-group">
+                    <label for="">Phone Number</label>
+                    <input type="tel" name="phone_number" placeholder="Phone Number"
+                        class="form-control form-control-sm">
+                </div>
+            </form>
+        </fieldset>
+    </div>
+   
+    <div class="col-4">
+        <form id="next_of_kin_form" class="ui form tiny">
+            <fieldset class="border border-secondary p-1 px-2 tatata">
+                <legend style="font-size: 14px;">Next Of Kin Details</legend>
+                <div class="form-row pt-1">
+                    <div class="form-group col-12">
+                        <label for="">Full Name :</label>
+                        <input type="text" name="fullname" placeholder="e.g Jon Smith"
+                            class="form-control form-control-sm" required>
+                    </div>
+                    <div class="col-12 mb-2">
+                        <label for="">Physical Address :</label>
+                        <input type="text" name="physical_address"
+                            placeholder="e.g 345C,Victoria Avenue, Blantyre, Malawi"
+                            class="form-control form-control-sm" required>
+                    </div>
+                    <div class="col-6 form-group">
+                        <label for="">Contact Phone:</label>
+                        <input type="text" name="phone_number" placeholder="e.g 099124567"
+                            class="form-control form-control-sm" required>
+                    </div>
+                    <div class="col-6 form-group">
+                        <label for="">Relationship :</label>
+                        <select name="relationship" style="padding: 4px !important;"
+                            class="form-control form-control-sm">
+                            <option value="">SELECT</option>
+                            {{#each relationships}}
+                                <option value="{{this.relationship_name}}">{{this.relationship_name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="col-5">
+        <form id="occupation_form" class="ui form tiny">
+            <fieldset class="border border-secondary p-1 px-2 tatata">
+                <legend style="font-size: 14px;">Occupation</legend>
+                <div class="form-row">
+                    <div class="col-12 form-group occupation_field d-none">
+                        <label for="">Employer Name :</label>
+                        <input type="text" placeholder="e.g Google Inc" name="employer_name"
+                            class="form-control form-control-sm">
+                    </div>
+                    <div class="col-8 form-group occupation_field d-none">
+                        <label for="">Employer Physical Address :</label>
+                        <input type="text" placeholder="" name="employer_address" class="form-control form-control-sm">
+                    </div>
+                    <div class="col-4 form-group occupation_field d-none">
+                        <label for="">Employer Phone :</label>
+                        <input type="text" placeholder="Include Zip Code" name="employer_phone"
+                            class="form-control form-control-sm">
+                    </div>
+                    <div class="col-6 form-group occupation_field d-none">
+                        <label for="">Designation/Job Title :</label>
+                        <input type="text" placeholder="e.g Sales Agent" name="job_title"
+                            class="form-control form-control-sm">
+                    </div>
+                    <div class="col-6 form-group occupation_field d-none">
+                        <label for="">Net Monthly Income :</label>
+                        <input type="number" min="0" name="net_monthly_income" class="form-control form-control-sm">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="col-1 text-right " style="position:relative !important;">
+        {{!-- <button style="position:absolute !important;bottom:3 !important;" class="ui button fluid icon yellow   tiny">
+            Clear <i class="icon refresh"></i>
+        </button>
+        <br> --}}
+        <button id="proceedBtn" style="position:absolute !important;bottom:0 !important;"
+            class="ui button fluid icon positive tiny">
+            Post Data <i class="icon check circle"></i>
+        </button>
+    </div>
+</div>
+
+<script>
+
+    const months = [
+        { 'id': 1, 'name': 'January' }, { 'id': 2, 'name': 'February' },
+        { 'id': 3, 'name': 'March' }, { 'id': 4, 'name': 'April' },
+        { 'id': 5, 'name': 'May' }, { 'id': 6, 'name': 'June' },
+        { 'id': 7, 'name': 'July' }, { 'id': 8, 'name': 'August' },
+        { 'id': 9, 'name': 'September' }, { 'id': 10, 'name': 'October' },
+        { 'id': 11, 'name': 'November' }, { 'id': 12, 'name': 'December' }
+    ];
+    function formYear() {
+        const today = new Date();
+        let this_year = today.getFullYear();
+        console.log(this_year);
+        let DOM = "<option value=''>Year</option>";
+        let new_year = this_year;
+        while (true) {
+            if ((this_year - new_year) >= 16) {
+                DOM += `<option value="${new_year}">${new_year}</option>`;
+                if ((this_year - new_year) == 100) {
+                    break;
+                }
+            }
+            new_year--;
+        }
+        $("#year").html(DOM);
+    }
+    function formMonth() {
+        let DOM = months.map(month => { return `<option value="${month.id}">${month.name}</option>` })
+        DOM.join();
+        DOM = `<option value="" selected >Month</option>${DOM}`;
+        $("#months").html(DOM);
+    }
+    function formDay(month) {
+        month--;
+        const days_max = [
+            31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+        ];
+        let DOM = "";
+        for (let i = 1; i <= days_max[month]; i++) {
+            DOM += `<option value="${i}">${i}</option>`;
+        }
+        DOM = `<option value="" selected >Day</option>${DOM}`;
+        $("#days").html(DOM);
+    }
+
+    $(document).ready(() => {
+
+        //$.notify("Hello World");
+        formYear();
+        formMonth();
+        $("#months").change(function (e) {
+            formDay(this.value);
+        });
+
+        $('#date_calendar').calendar({ type: 'date' });
+
+        $("#account_type").change(function (e) {
+
+            if (this.value == 2) {
+                $(".agent_field").removeClass('d-none');
+            } else {
+                $(".agent_field").addClass('d-none');
+            }
+        })
+    })
+
+</script>
+<style>
+    legend {
+        color: red !important;
+    }
+
+</style>
+
+<script src="js/customer.jsx"></script>

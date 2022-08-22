@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+{{!-- 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> --}}
+
+{{!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto+Condensed&display=swap" rel="stylesheet"> --}}
+{{!-- 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"> --}}
+
+      
+
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/semantic/dist/semantic.min.css">
+    <link rel="stylesheet" href="lib/sweetalerts/sweetalert.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="lib/css/jquery.loadingModal.min.css">
+
+    <link rel="stylesheet"  type="text/css" href="lib/DataTable/jquery.dataTables.min.css">
+    <link rel="stylesheet"  type="text/css" href="lib/DataTable/buttons.dataTables.mini.css">
+
+    <script src="js/jquery.jsx"></script>
+    <script>
+        const BaseURL = "http://localhost:4000"
+    </script>
+</head>
+<body id="main-body">
+   <div class="container-fluid" style="margin:0 important;padding:0 !important;">
+        {{#if session}}
+            {{> header}}
+        {{/if}}
+        {{{body}}}
+        {{!-- <div class="ui bottom attached label text-center" style="background-color: transparent;background:none;border:0;">
+            <div class="row">
+               
+                <div class="col-8">
+                      <label style="float:left !important;padding-right:1.3em;">Copyright&copy;2020 - Maziko FinTech Solutions</label>
+                </div>
+                <div class="col-4">
+                    <label style="float:right !important;padding-right:1.3em;"> All Rights Reserved</label>
+                </div>
+            </div>
+        </div> --}}
+    </div>
+
+     <div class="ui dimmer" id="loadingDimmer">
+      <div class="ui text loader" id="loadingText">Loading</div>
+    </div>
+</body>
+<script src="js/app.jsx"></script>
+<script src="js/accounting.jsx"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/semantic/dist/semantic.min.js"></script>
+<script src="lib/sweetalerts/sweetalert.min.js"></script>
+<script src="lib/jquery-loader/js/jquery.loadingModal.min.js"></script>
+<script type="text/javascript" defer src="lib/DataTable/jquery.dataTables.min.js"></script>
+{{!-- <script type="text/javascript" defer src="js/notify.min.js"></script> --}}
+<script type="text/javascript" defer src="lib/DataTable/dataTables.buttons.min.js"></script> 
+<script type="text/javascript" defer src="lib/DataTable/jszip.min.js"></script>
+<script type="text/javascript" defer src="lib/DataTable/buttons.html5.min.js"></script>
+{{!-- <script type="text/javascript" defer src="js/crypto-js.min.js" ></script> --}}
+<script>
+    
+    let Isset = (field)=>{
+        return (field && field != null && field != "" && field != typeof undefined) ? true : false
+    }
+
+    $('#rangestart').calendar({
+        type: 'date',
+        endCalendar: $('#rangeend')
+    });
+    $('#rangeend').calendar({
+        type: 'date',
+        startCalendar: $('#rangestart')
+    });
+
+    $('.ui.dropdown').dropdown()
+
+    $('.message .close')
+  .on('click', function() {
+    $(this)
+      .closest('.message')
+      .transition('fade')
+    ;
+  })
+;
+$('#date_calendar').calendar({type: 'date'});
+</script>
+</html>

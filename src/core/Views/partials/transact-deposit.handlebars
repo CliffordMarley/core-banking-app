@@ -1,0 +1,287 @@
+<div class="row">
+   <div class="col-12">
+      <h3 class="bg-theme p-2 text-white">General Cash Deposit</h3>
+
+   </div>
+
+   <div class="col-8">
+      <div class="row">
+         <div class="col-6">
+            <fieldset class="border border-secondary mt-3 py-0">
+               <legend style="color:black;font-weight:bold;font-size:14px;">Simple Search</legend>
+               <div class="pt-2 pb-1">
+                  <div class="row">
+                     <div class="col-12">
+                         <button class="btn btn-lg bg-theme btn-block text-white flat">Account Search <i class="icon search"></i></button>
+                     </div>
+                  </div>
+               </div>
+            </fieldset>
+            
+            <form class="t-1 mt-2 form-row" id="first_form">
+
+               <div class="form-group my-0 col-4">
+                  <label for="">National ID :</label>
+                  <input type="text" placeholder="(Optional)" onkeyup="this.value = this.value.trim('').toUpperCase()"
+                     placeholder="" id="kyc_id" class="form-control form-control-sm">
+               </div>
+               <div class="form-group my-0 col-8">
+                  <label for="">Account Number:</label>
+                  <input type="number" placeholder="Depositor Account Number" id="search_account" class="form-control form-control-sm">
+                  <div style="position: fixed;margin-top:0px;margin-left:200px;z-index:20;">
+                     <div class="list-group" id="show-list">
+
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group my-0 col-8 mt-2">
+                  <label for="">Cash Deposit Amount <span class="selected_currency"></span>:</label>
+                  <input type="number" min="100" placeholder="Not less than MK100.00" id="deposit_amount" class="form-control form-control-sm">
+               </div>
+               <div class="col-4 form-group mt-2">
+                  <label for="">Currency :</label>
+                  <select class="form-control form-control-sm" name="currency" id="currency">
+                     <option value="">SELECT</option>
+                  </select>
+               </div>
+
+            </form>
+
+         </div>
+         <fieldset class="col-6 border border-secondary">
+            <legend style="font-size: 14px;">Account Summary</legend>
+            <style>
+               #account_details tbody tr th {
+                  font-family: mont;
+                  font-size:16px;
+               }
+            </style>
+            <table class="table table-sm table-striped m-0 p-0" id="account_details">
+               <tbody>
+                  <tr>
+                     <th>Account Number:</th>
+                     <th id="acc_number">--</th>
+                  </tr>
+                  <tr>
+                     <th>Account Name:</th>
+                     <th id="acc_name">--</th>
+                  </tr>
+                  <tr>
+                     <th>Account Type:</th>
+                     <th id="acc_type">--</th>
+                  </tr>
+                  <tr>
+                     <th>Status:</th>
+                     <th id="acc_status">--</th>
+                  </tr>
+                  <tr>
+                     <th>Branch:</th>
+                     <th id="acc_branch">--</th>
+                  </tr>
+                  <tr>
+                     <th>Available Balance:</th>
+                     <th>MK<span style="font-weight:bold;" id="acc_balance">0.00</span></th>
+                  </tr>
+               </tbody>
+            </table>
+
+         </fieldset>
+         <div class="col-12">
+            <div class="col-12">
+               <form action="#" id="deposit_form">
+                  <div class="ui horizontal divider my-1 p-0">Denomination Layout</div>
+
+                  <style>
+                     #deposit_table tbody tr,
+                     #deposit_table tbody tr th,
+                     #deposit_table tbody tr th {
+                        padding: 0 !important;
+                        height: 24px;
+                     }
+                  </style>
+
+                  <table class=" table table-sm table-bordered" id="deposit_table">
+                     <thead class="bg-theme">
+                        <th class="text-white ">Note(MWK)</th>
+                        <th class="text-white" style="width:250px;">Amount In Words</th>
+                        <th class="text-white ">Note Count</th>
+                        <th class="text-white " style="width:150px;">SubTotal (MWK)</th>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <th class="text-left pl-2">5.00</th>
+                           <th>Five Kwacha Coin</th>
+                           <th>
+                              <input class="deposit_fields" multiplier="5" outlet="5k_total" type="number" min="0">
+                           </th>
+                           <th>
+                              <span id="5k_total">0.00</span>
+                           </th>
+                        </tr>
+                        <tr>
+                           <th class="text-left pl-2">10.00</th>
+                           <th>Ten Kwacha Coin</th>
+                           <th>
+                              <input class=" deposit_fields" multiplier="10" outlet="10k_total" type="number" min="0">
+                           </th>
+                           <th>
+                              <span id="10k_total">0.00</span>
+                           </th>
+                        </tr>
+                        <tr>
+                           <th class="text-left pl-2">20.00</th>
+                           <th>Twenty Kwacha Note</th>
+                           <th>
+                              <input class=" deposit_fields" multiplier="20" outlet="20k_total" type="number" min="0">
+                           </th>
+                           <th>
+                              <span id="20k_total">0.00</span>
+                           </th>
+                        </tr>
+                        <tr>
+                           <th class="text-left pl-2">50.00</th>
+                           <th>Fifty Kwacha Note</th>
+                           <th>
+                              <input class=" deposit_fields" multiplier="50" outlet="50k_total" type="number" min="0">
+                           </th>
+                           <th>
+                              <span id="50k_total">0.00</span>
+                           </th>
+                        </tr>
+                        <tr>
+                           <th class="text-left pl-2">100.00</th>
+                           <th>One Hundren Kwacha Note</th>
+                           <th>
+                              <input class=" deposit_fields" multiplier="100" outlet="100k_total" type="number" min="0">
+                           </th>
+                           <th>
+                              <span id="100k_total">0.00</span>
+                           </th>
+                        </tr>
+                        <tr>
+                           <th class="text-left pl-2">200.00</th>
+                           <th>Two Hundred Kwacha Note</th>
+                           <th>
+                              <input class=" deposit_fields" multiplier="200" outlet="200k_total" type="number" min="0">
+                           </th>
+                           <th>
+                              <span id="200k_total">0.00</span>
+                           </th>
+                        </tr>
+                        <tr>
+                           <th class="text-left pl-2">500.00 </th>
+                           <th>Five Hundred Kwacha Note</th>
+                           <th>
+                              <input class=" deposit_fields" multiplier="500" outlet="500k_total" type="number" min="0">
+                           </th>
+                           <th>
+                              <span id="500k_total">0.00</span>
+                           </th>
+                        </tr>
+                        <tr>
+                           <th class="text-left pl-2">1000.00 </th>
+                           <th>One Thousand Kwacha Note</th>
+                           <th>
+                              <input class=" deposit_fields" multiplier="1000" outlet="1000k_total" type="number"
+                                 min="0">
+                           </th>
+                           <th>
+                              <span id="1000k_total">0.00</span>
+                           </th>
+                        </tr>
+                        <tr>
+                           <th class="text-left pl-2">2000.00 </th>
+                           <th>Two Thousand Kwacha Note</th>
+                           <th>
+                              <input class="deposit_fields" multiplier="2000" outlet="2000k_total" type="number"
+                                 min="0">
+                           </th>
+                           <th>
+                              <span id="2000k_total">0.00</span>
+                           </th>
+                        </tr>
+                        <tr>
+                           <th style="background: black;padding:.5em;color:white;"></th>
+                           <th style="background: black;padding:.5em;color:white;"></th>
+                           <th class="text-left" style="background: black;padding:.5em;color:white;">TOTAL :</th>
+                           <th style="background: black;padding:.5em;color:white;">
+                              <h3 style="font-family: verdana;">MK<span id="display_total"
+                                    style="font-family: verdana;line-width:12px;">0.00</span></h3>
+                           </th>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <button type="button" id="initiateDepositButton" class="btn btn-success btn-md float-right">Initiate
+                     Deposit</button>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-4">
+
+      <fieldset class="border border-secondary p-1 px-2 ui segment kyc_segment"
+         style="height:100%;background:none;border-radius:none;">
+         <legend style="font-size: 14px;">KYC Details</legend>
+         <div style="height: 25vh;" class="ui image kyc_display_image">
+
+         </div>
+
+         <table class="table table-sm table-striped table-bordered mt-2" id="kyc_details_display">
+
+            <tbody>
+               <tr>
+                  <td>ID NUMBER :</td>
+                  <td class="id_number">EMPTY</td>
+               </tr>
+               <tr>
+                  <td>ID TYPE :</td>
+                  <td class="id_type">EMPTY</td>
+               </tr>
+
+               <tr>
+                  <td>DATE ISSUED :</td>
+                  <td class="issue_date">EMPTY</td>
+               </tr>
+               <tr>
+                  <td>EXPRY DATE :</td>
+                  <td class="expiry_date">EMPTY</td>
+               </tr>
+            </tbody>
+         </table>
+
+      </fieldset>
+   </div>
+
+</div>
+
+
+
+
+</div>
+
+<script src="js/accounts.jsx"></script>
+<script src="js/deposit.jsx"></script>
+<script src="js/AccountManagement.jsx"></script>
+
+
+<style>
+   .deposit_fields {
+      width: 100px !important;
+      padding: 0;
+      margin: 0;
+      border-radius: 5px/5px !important;
+      padding:0 !important;
+   }
+
+   table tbody tr,
+   table tbody tr th {
+      width: 50px !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      padding-left: 10px !important;
+   }
+   table tbody tr td{
+      font-family: roboto !important;
+   }
+</style>

@@ -1,0 +1,66 @@
+<h3 class="bg-theme text-white p-1" id="contain_words">
+    <span style="font-family: Montserrat, roboto;"  id="ss_text">Services</span> 
+    <button id="toggleExtendedViewPortBtn" class="float-right d-inline-block" style="cursor: pointer;" href="#toggleExtendedViewPort">
+                <i class="icon arrow left"></i>
+            </button>
+</h3>
+<br>
+<ul id="mx-services"class="pl-2">
+    <li class="{{#ifeq title 'Workspace'}}active{{/ifeq}}"><a href="workspace"> Daily Sessions</a></li>
+    {{#each userdata.menus}}
+       
+        <li><a href="{{#ifnoteq view ''}} {{view}} {{/ifnoteq}}" {{#grt_than children 0}}  data-toggle="collapse" data-target="#collapse_id_{{id}}" aria-expanded="
+        {{#each children}}
+            {{#ifeq view 'transact-deposit'}} true {{/ifeq}} 
+        {{/each}}" aria-controls="collapseExample" {{/grt_than}}> <span>{{menu_name}}</span></a><br>
+            <ul class="pl-5 mt-2 mb-4 collapse" id="collapse_id_{{id}}">
+                {{#each children}}
+                    <li {{#ifeq partial '{{view}}'}} class='active' {{/ifeq}} ><a href="{{view}}"> {{menu_name}}</a></li>
+                {{/each}}
+                
+            </ul>
+        </li>
+    {{/each}}
+</ul>
+
+
+<style>
+    #mx-services li{
+        list-style: none;
+        margin-bottom:.4em;
+        font-family: 'Montserrat', 'roboto', !important;
+    }
+    #mx-services li a:hover{
+        text-decoration: none;
+        color:rgb(20, 20, 20);
+    }
+    #mx-services li.active a{
+        font-size: 16px;
+        text-decoration: none;
+        color:rgb(20, 20, 20);
+    }
+    #mx-services li a span{
+  
+    }
+    
+</style>
+
+<script>
+    let screen_toggle = false
+    $("#toggleExtendedViewPortBtn").click(e=>{
+        screen_toggle = !screen_toggle
+        if(screen_toggle){ 
+            $("#toggleExtendedViewPortBtn").html('<i class="icon arrow right"></i>') 
+            $("#mx-services, #ss_text").hide()//.transition('fade out')
+            $("#contain_words").attr('class', 'pt-1')
+            $("#services_column").attr('class', 'one wide column  border border-right-secondary')
+            $("#view_column").attr('class', 'fifteen wide column')
+        }else{
+            $("#toggleExtendedViewPortBtn").html('<i class="icon arrow left"></i>')
+            $("#mx-services, #ss_text").show().transition('fade in')
+            $("#contain_words").attr('class', 'bg-theme text-white p-1')
+            $("#services_column").attr('class', 'three wide column  border border-right-secondary')
+            $("#view_column").attr('class', 'thirteen wide column')
+        }
+    })
+</script>

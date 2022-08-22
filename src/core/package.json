@@ -1,0 +1,38 @@
+{
+  "name": "chatute-core",
+  "version": "1.0.0",
+  "description": "All Core Processes of the Chatute Application",
+  "main": "server.js",
+  "scripts": {
+    "test": "run dev"
+  },
+  "keywords": [
+    "Core",
+    "Loans",
+    "Saving",
+    "Accounts",
+    "Management",
+    "Users",
+    "Partners",
+    "Investment",
+    "Integrations"
+  ],
+  "author": "Clifford P. Mwale",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.8.0",
+    "base64-img": "^1.0.1",
+    "compression": "^1.7.4",
+    "connect-flash": "^0.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "express-session": "^1.17.2",
+    "handlebars": "^4.7.7",
+    "moment": "^2.29.1",
+    "mysql": "^2.18.1",
+    "redis": "^3.1.2",
+    "uuid": "^8.3.2"
+  }
+}

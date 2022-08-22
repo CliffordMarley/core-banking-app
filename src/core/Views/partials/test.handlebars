@@ -1,0 +1,750 @@
+<div class="row pr-2">
+    <div class="col-12">
+        <h3 style="font-family: orbitron;" class="bg-theme text-white p-2  py-1">
+            <i class="icon user circle"></i> <span class="account_name">Create New Client</span>
+        </h3>
+    </div>
+</div>
+<link rel="stylesheet" href="css/multistep.css">
+<div class="form__container">
+    <div class="title__container">
+        <h1 class="text-theme">New Customer Creation</h1>
+        <p>Follow the 4 simple steps to complete your mapping</p>
+    </div>
+    <div class="body__container">
+        <div class="left__container">
+            <div class="side__titles">
+                <div class="title__name">
+                    <h3 class="text-secondary">Basic Details</h1>
+                        <p class="text-theme">Fill In & press next!</p>
+                </div>
+                <div class="title__name">
+                    <h3 class="text-secondary">Contact Address</h1>
+                        <p class="text-theme">Add all contacts and proceed!</p>
+                </div>
+                <div class="title__name">
+                    <h3 class="text-secondary">Family / Next Of Kin</h1>
+                        <p class="text-theme">Add all traceable relatives!</p>
+                </div>
+                <div class="title__name">
+                    <h3 class="text-secondary">Employment</h1>
+                        <p class="text-theme">Only if customer is employed!</p>
+                </div>
+                <div class="title__name">
+                    <h3 class="text-secondary">KYC & CDD Documentation</h1>
+                        <p class="text-theme">Should include government issued ID</p>
+                </div>
+                <div class="title__name">
+                    <h3 class="text-secondary">Complete</h1>
+                        <p class="text-theme">Confirm before submission!</p>
+                </div>
+            </div>
+            <div class="progress__bar__container">
+                <ul>
+                    <li class="active" id="icon1">
+                        <ion-icon name="person-outline"></ion-icon>
+                    </li>
+                    <li id="icon2">
+                        <ion-icon name="mail-unread"></ion-icon>
+                    </li>
+                    <li id="icon3">
+                        <ion-icon name="people"></ion-icon>
+                    </li>
+                    <li id="icon4">
+                        <ion-icon name="wallet"></ion-icon>
+                    </li>
+                    <li id="icon5">
+                        <ion-icon name="folder-open"></ion-icon>
+                    </li>
+                    <li id="icon6">
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="right__container my-1">
+            <fieldset id="form1">
+                <div class="sub__title__container ">
+                    <p>Step 1/6</p>
+                    <h2 class="text-theme">Let's start with the basics</h2>
+                </div>
+                {{!-- FORM STARTS --}}
+
+                <form id="basic_details_form" class="form-row mt-3">
+                    <div class="col-3 form-group">
+                        <label style="font-size:17px;">Legal Form :</label>
+                        <select id="legal_form" name="legal_form" class="form-control form-control-sm" style="padding: 3px !important;">
+                            <option selected value="PERSON">PERSON</option>
+                            <option value="ENTITY">ENTITY</option>
+                        </select>
+                    </div>
+                    <div class="col-3 form-group form_person">
+                        <label style="font-size:17px;">Title :</label>
+                        <select name="title" style="padding: 3px !important;" class="form-control  form-control-sm">
+                            <option value="">SELECT</option>
+                            <option value="Mr">Mr</option>
+                            <option value="Ms">Ms</option>
+                            <option value="Dr">Dr</option>
+                            <option value="Prof">Prof</option>
+                            <option value="Rev">Rev</option>
+                            <option value="Chief">Chief</option>
+                            <option value="Hon">Hon</option>
+                            <option value="H.E">H.E</option>
+                            <option value="Gen">Gen</option>
+                        </select>
+                    </div>
+                    <div class="col-6 form_person"></div>
+                    <div class="col-4 form_person form-group">
+                        <label style="font-size:17px;">Firstname :</label>
+                        <input type="text" name="firstname" placeholder="e.g Jon" class="form-control form-control-sm ">
+                    </div>
+                    <div class="col-4 form_person form-group">
+                        <label style="font-size:17px;">Lastname :</label>
+                        <input type="text" name="lastname" placeholder="e.g Smith" class="form-control form-control-sm">
+                    </div>
+                    <div class="col-4 form_person form-group">
+                        <label style="font-size:17px;">Other Name (s) :</label>
+                        <input type="text" name="othernames" placeholder="(Optional)"
+                            class="form-control form-control-sm ">
+                    </div>
+                    <div class="col-3 form_person form-group">
+                        <fieldset class="card border border-secondary py-0">
+                            <legend style="color:black;font-weight:bold;font-size:14px;">Gender</legend>
+                            <div class="card-body p-2">
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="gender_radio form-check-input" value="MALE"
+                                            name="gender">Male
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="gender_radio form-check-input" value="FEMALE"
+                                            name="gender">Female
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="col-6 form_person form-group">
+                        <fieldset class="card border border-secondary py-0">
+                            <legend style="color:black;font-weight:bold;font-size:14px;">Marital Status</legend>
+                            <div class="card-body p-2">
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="marital_status_radio form-check-input" value="SINGLE"
+                                            name="marital_status">Single
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="marital_status_radio form-check-input"
+                                            value="MARRIED" name="marital_status">Married
+                                    </label>
+                                </div>
+                                <div class="form-check-inline disabled">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="marital_status_radio form-check-input"
+                                            value="DIVORCED" name="marital_status">Divorced
+                                    </label>
+                                </div>
+                                <div class="form-check-inline disabled">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="marital_status_radio form-check-input"
+                                            value="SEPARATED" name="marital_status">Separated
+                                    </label>
+                                </div>
+                                <div class="form-check-inline disabled">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="marital_status_radio form-check-input"
+                                            value="WIDOWED" name="marital_status">Widowed
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="col-3 form_person form-group">
+                        <label style="font-size:17px;">Date Of Birth :</label>
+                        <div class="ui calendar" id="date_calendar">
+                            <div class="ui input left icon">
+                                <i class="calendar icon"></i>
+                                <input type="text" name="dob" class="form-control form-control-sm"
+                                    placeholder="Pick Date">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 form_person form-group">
+                        <label style="font-size:17px;">Nationality :</label>
+                        <select name="nationality" style="padding: 3px !important;"
+                            class="ui selection form-control form-control-sm">
+                            <option value="">Select</option>
+                            {{#each countries}}
+                                <option value="{{this.id}}" {{#ifeq this.is_default 1}}selected{{/ifeq}}>
+                                    {{this.country}}
+                                </option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    
+
+
+                </form>
+
+                {{!-- FORM ENDS HERE --}}
+                
+                <div class="buttons"> <a  class="prev__btn " style="color:whitesmoke !important;" disabled onclick="prevForm();">Back</a> <a class="nxt__btn bg-theme text-white"
+                    onclick="nextForm();">Next</a> </div>
+            </fieldset>
+            <fieldset class="active__form" id="form2">
+                <div class="sub__title__container">
+                    <p>Step 2/6</p>
+                    <h2 class="text-theme">Enter all available contacts!</h2>
+                   
+                </div>
+                <div class="input__container">
+                   <form id="contacts_form" class=" mt-2">
+                       <div class="form-row">
+                        <div class="col-6 form-group">
+                            <label style="font-size:17px;">Address Line 1  :</label>
+                            <input type="text" name="address_line_1" placeholder="(Required)"
+                                class="form-control form-control-sm" required>
+                        </div>
+                        <div class="col-6 form-group">
+                            <label style="font-size:17px;">Address Line 2 :</label>
+                            <input type="text" name="address_line_2" placeholder="(Optional)"
+                                class="form-control form-control-sm">
+                        </div>
+                       </div>
+                
+                
+                <div class="form-row">
+                    <div class="col-4 form-group">
+                        <label style="font-size:17px;">City :</label>
+                        <select name="city" class="form-control form-control-sm" required>
+                            <option disabled selected value="">SELECT (Required)</option>
+                            {{#each cities}}
+                                <option value="{{this.city_name}}">{{this.city_name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="col-8 form-group">
+                        <fieldset class="py-0 pt-1">
+                            <legend style="color:black;font-weight:bold;font-size:14px;">Residency ( <span style="font-size: 10px;">Required</span> ) :</legend>
+                            <div class="p-1">
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="residency_radio form-check-input" value="PERMANENT"
+                                            checked name="residency">Permanent
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="residency_radio form-check-input" value="NON_RESIDENT"
+                                            name="residency">Non-Resident
+                                    </label>
+                                </div>
+                                <div class="form-check-inline disabled">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="residency_radio form-check-input" value="REFUGEE"
+                                            name="residency">Refugee
+                                    </label>
+                                </div>
+    
+                            </div>
+                        </fieldset>
+    
+                    </div>
+                </div>
+
+
+               <div class="form-row">
+                <div class="col-6 form-group">
+                    <label style="font-size:17px;">Email Address :</label>
+                    <input type="email" name="email_address" placeholder="(Optional)"
+                        class="form-control form-control-sm">
+                </div>
+                <div class="col-12"></div>
+                <div class="col-6 form-group">
+                    <label style="font-size:17px;">Phone Number :</label>
+                    <input type="tel" name="phone_number" placeholder="(Required)"
+                        class="form-control form-control-sm" required>
+                </div>
+               </div>
+            </form>
+            
+                    <div class="buttons"> <a class="prev__btn" onclick="prevForm();">Back</a> <a class="nxt__btn text-white"
+                            onclick="nextForm();">Next</a> </div>
+                </div>
+            </fieldset>
+            <fieldset class="active__form" id="form3">
+                <div class="sub__title__container">
+                    <p>Step 3/6</p>
+                    <h2 class="text-theme">Add Next Of Kin</h2>
+                </div>
+                <div class="input__container">
+                   <form class="form-row" id="next_of_kin_form">
+                       {{!-- <div class="form-group col-4">
+                        <label style="font-size:17px;">Full Name :</label>
+                        <input type="text" name="fullname" placeholder="e.g Jon Smith"
+                            class="form-control form-control-sm" required>
+                    </div>
+                    <div class="col-8 mb-2">
+                        <label style="font-size:17px;">Physical Address :</label>
+                        <input type="text" name="physical_address"
+                            placeholder="e.g 345C,Victoria Avenue, Blantyre, Malawi"
+                            class="form-control form-control-sm" required>
+                    </div>
+                    <div class="col-6 form-group">
+                        <label style="font-size:17px;">Contact Phone:</label>
+                        <input type="text" name="phone_number" placeholder="e.g 099124567"
+                            class="form-control form-control-sm" required>
+                    </div>
+                    <div class="col-6 form-group">
+                        <label style="font-size:17px;">Relationship :</label>
+                        <select name="relationship" style="padding: 4px !important;"
+                            class="form-control form-control-sm">
+                            <option value="">SELECT</option>
+                            {{#each relationships}}
+                                <option value="{{this.relationship_name}}">{{this.relationship_name}}</option>
+                            {{/each}}
+                        </select>
+                    </div> --}}
+                    <div class="col-12">
+                        <button type="button" data-toggle="modal" data-target="#familyMemberModal" data-backdrop="static" class="btn btn-lg flat bg-theme text-white btn-block">Add Family Member <i class="icon plus circle"></i></button>
+                        <hr>
+                        <table class="ui table tiny bordered striped" id="family_members_table">
+                            <thead>
+                                <th>#</th>
+                                <th>FullName</th>
+                                <th>ResidentialAddress</th>
+                                <th>PhoneNumber</th>
+                                <th>Relationship</th>
+                                <th></th>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                   </form>
+                    <div class="buttons"> <a class="prev__btn" onclick="prevForm();">Back</a> <a class="text-white nxt__btn"
+                            onclick="nextForm();">Next</a> </div>
+                </div>
+            </fieldset>
+            <fieldset class="active__form" id="form4">
+                <div class="sub__title__container">
+                    <p>Step 4/6</p>
+                    <h2 class="text-theme">Employment & Income Details</h2>
+                    <!-- <p>Please let us know budget for your project so yes are great that we can give the right quote
+                        thanks</p> -->
+                </div>
+                <div class="input__container"> 
+                    <form class="form-row" id="occupation_form">
+                        <div class="col-4 form_person form-group">
+                            <label style="font-size:17px;">Employment :</label>
+                            <select name="employment_status" id="employment_status" style="padding: 3px !important;"
+                                class="ui selection form-control form-control-sm">
+                                <option value="">SELECT</option>
+                                <option value="UNEMPLOYED">UNEMPLOYED</option>
+                                <option value="EMPLOYED">EMPLOYED</option>
+                                <option value="SELF-EMPLOYED">SELF-EMPLOYED</option>
+                            </select>
+                        </div>
+                        <div class="col-7 form-group occupation_field d-none">
+                            <label style="font-size:17px;">Employer Name :</label>
+                            <input type="text" placeholder="e.g Google Inc" name="employer_name"
+                                class="form-control form-control-sm">
+                        </div>
+                        <div class="col-8 form-group occupation_field d-none">
+                            <label style="font-size:17px;">Employer Physical Address :</label>
+                            <input type="text" placeholder="e.g House No, Street, City, Country" name="employer_address" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-5 form-group occupation_field d-none">
+                            <label style="font-size:17px;">Employer Phone :</label>
+                            <input type="text" placeholder="Include Zip Code" name="employer_phone"
+                                class="form-control form-control-sm">
+                        </div>
+                        <div class="col-6 form-group occupation_field d-none">
+                            <label style="font-size:17px;">Designation/Job Title :</label>
+                            <input type="text" placeholder="e.g Sales Agent" name="job_title"
+                                class="form-control form-control-sm">
+                        </div>
+                        <div class="col-4 form-group ">
+                            <label style="font-size:17px;">Net Monthly Income :</label>
+                            <input type="number" min="0" placeholder="(Do not format figure)" name="net_monthly_income" class="form-control form-control-sm">
+                        </div>
+                    </form>
+                    <div class="buttons"> <a class="prev__btn" onclick="prevForm();">Back</a> <a class="nxt__btn text-white"
+                            onclick="nextForm();">Next</a> </div>
+                </div>
+            </fieldset>
+            <fieldset class="active__form" id="form5">
+                <div class="sub__title__container">
+                    <p>Step 5/6</p>
+                    <h2 class="text-theme">Upload KYC Documents</h2>
+                    <p>Upload all supporting identity and proof of residence documents!
+                    </p>
+                </div>
+                <div class="input__container">
+                    <div class="form-row">
+                        <div class="col-12 text-right">
+                            <button data-toggle="modal" data-target="#uploadDocumentsModal" class="btn btn-lg bg-theme text-white">Insert New <i class="icon folder open"></i></button>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <table class="ui table tiny celled striped" id="documents_table">
+                                <thead>
+                                    <th>#</th>
+                                    <th>Document Type</th>
+                                    <th>ID Number</th>
+                                    <th>Issuing Authority</th>
+                                    <th>File Type</th>
+                                    <th>Primary ID?</th>
+                                    <th></th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-12">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="buttons"> <a class="prev__btn" onclick="prevForm();">Back</a> <a class="nxt__btn text-white"
+                            id="submitBtn" onclick="nextForm();">Next</a> </div>
+                </div>
+            </fieldset>
+             <fieldset class="active__form ui form"  id="form6">
+                    <div class="sub__title__container">
+                    <p>Step 6/6</p>
+                    <h2 class="text-theme">Account Products & Services</h2>
+                    
+                    </p>
+                </div>
+                <div class="input__container">
+                    <form id="products_and_services_form" class="form-row">
+                        <div class="col-12">
+                            <h3 class="bg-theme text-white p-1 mb-2" style="font-family: orbitron;">Account Products<i
+                                class="icon "></i></h3>
+                        </div>
+                        <div class="col-12">
+                          
+                            <div class="ui checkbox">
+                                <input checked type="checkbox" class="disabled" editable="false" name="accounts" value="savings">
+                                <label  style="font-size:17px;">Savings Account</label>
+                            </div>
+                            <div class=" mx-3 ui checkbox">
+                                <input type="checkbox" value="current" name="accounts">
+                                <label  style="font-size:17px;">Current Account</label>
+                            </div>
+
+                        </div>
+                        <div class="col-12 mt-3">
+                            <h3 class="bg-theme text-white p-1 my-2" style="font-family: orbitron;">Customer Services<i
+                                class="icon "></i></h3>
+                        </div>
+                        <div class="col-12">
+                          
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="services" value="mobile_banking">
+                                <label  style="font-size:17px;">Mobile Banking</label>
+                            </div>
+                            <div class="mx-4 ui checkbox">
+                                <input type="checkbox" name="services" name="internet_banking">
+                                <label  style="font-size:17px;">Internet Banking</label>
+                            </div>
+
+                            <!-- <div class="mx-4 ui checkbox">
+                                <input type="checkbox" name="internet_banking">
+                                <label  style="font-size:17px;">Internet Banking</label>
+                            </div> -->
+
+                        </div>
+                        <div class="col-12"><hr></div>
+                    </form>
+                    <div class="buttons"> <a class="prev__btn" onclick="prevForm();">Back</a> <a class="nxt__btn text-white"
+                            id="submitBtn" onclick="nextForm();">Submit</a> </div>
+                </div>
+             </fieldset>
+        </div>
+    </div>
+</div>
+
+<!-- FAMILY MEMBER MODAL STARTS -->
+
+<div class="modal fade" id="familyMemberModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <form class="modal-content ui tiny form" id="family_member_form">
+        <div class="modal-header bg-theme">
+          <h5 class="modal-title text-white text-cente">Add Family Member <i class="icon users circle"></i></h5>
+          <button type="reset" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <fieldset class="border border-secondary p-1 px-2 tatata">
+                <legend style="font-size: 14px;">Next Of Kin Details</legend>
+                <div class="form-row pt-1">
+                    <div class="form-group col-12">
+                        <label style="font-size:17px;">Full Name :</label>
+                        <input type="text" name="fullname" placeholder="e.g Jon Smith"
+                            class="form-control form-control-sm" required>
+                    </div>
+                    <div class="col-12 mb-2">
+                        <label style="font-size:17px;">Physical Address :</label>
+                        <input type="text" name="physical_address"
+                            placeholder="e.g 345C,Victoria Avenue, Blantyre, Malawi"
+                            class="form-control form-control-sm" required>
+                    </div>
+                    <div class="col-6 form-group">
+                        <label style="font-size:17px;">Contact Phone:</label>
+                        <input type="text" name="phone_number" placeholder="e.g 099124567"
+                            class="form-control form-control-sm" required>
+                    </div>
+                    <div class="col-6 form-group">
+                        <label style="font-size:17px;">Relationship :</label>
+                        <select name="relationship" style="padding: 4px !important;"
+                            class="form-control form-control-sm">
+                            <option value="">SELECT</option>
+                            {{#each relationships}}
+                                <option value="{{this.relationship_name}}">{{this.relationship_name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
+          <button type="submit" class="btn bg-theme text-white">Insert</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FAMILY MEMBER MODAL END -->
+
+  <!-- FAMILY MEMBER MODAL STARTS -->
+
+<div class="modal fade" id="uploadDocumentsModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <form class="modal-content ui tiny form" id="document_form">
+        <div class="modal-header bg-theme">
+          <h5 class="modal-title text-white text-cente">Upload Documents <i class="icon folder"></i></h5>
+          <button type="reset" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           <div class="row">
+               <div class="col-6">
+                <fieldset class="border border-secondary p-1 px-2 tatata">
+                    <legend style="font-size: 14px;">Document Details</legend>
+                    <div class="form-row">
+                        <div class="col-12 form-group">
+                            <label style="font-size:17px;">Document Type :</label>
+                                <select name="document_type"  class="form-control form-control-sm" required>
+                                    <option value="">SELECT</option>
+                                    {{#each doc_types}}
+                                        <option value="{{this.id}}:{{this.type_name}}:{{issuing_authority}}">{{this/type_name}}</option>
+                                    {{/each}}
+
+                                </select>
+                        </div>
+                        <div class="col-12 form-group">
+                            <label for="">ID Number</label>
+                            <input type="text" name="id_number" class="form-control">
+                        </div>
+                        <div class="col-12 form-group">
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="is_id">
+                                <label  style="font-size:17px;">Primary ID?</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button id="PickFileBtn" type="button" class="btn btn-lg btn-block bg-theme text-white">
+                                Pick File <i class="icon upload"></i>
+                            </button>
+                            <input type="file" hidden name="files" id="ActualFile" accept="*">
+                        </div>
+                    </div>
+                </fieldset>
+               </div>
+               <div class="col-6">
+                <div style="height: 25vh;" id="ImagePreview" class="ui d-none image kyc_display_image"></div>
+               </div>
+           </div>
+        </div>
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
+          <button type="submit" class="btn bg-theme text-white">Insert</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FAMILY MEMBER MODAL END -->
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="js/multistep.jsx"></script>
+<script src="js/customer.jsx"></script>
+<script>
+    let family_members_table, documents_table, Blob
+    //Uninitialised arrays
+    let SelectedDocuments = []
+    $(document).ready(()=>{
+        $("#employment_status").change(function(){
+            let value = this.value
+            if(value == 'EMPLOYED'){
+                $(".occupation_field").removeClass("d-none").transition('fade in')
+            }else{
+                $(".occupation_field").addClass("d-none");//.transition("fade out")
+            }
+        })
+        
+        $("#legal_form").change(e=>{
+            let legal_form = $(e.target).val()
+            if(legal_form == 'ENTITY'){
+                $('.form_person').addClass('d-none')
+            }else{
+                $('.form_person').removeClass('d-none')
+            }
+        })
+
+        family_members_table = $("#family_members_table").DataTable({
+            pageLength:5
+        })
+        documents_table = $("#documents_table").DataTable({
+            pageLength:5,
+            search:false
+        })
+
+        $("#PickFileBtn").click(()=>{
+            $("#ActualFile").click()
+        })
+
+        $("#ActualFile").change((e)=>{ 
+
+            readURL(document.getElementById("ActualFile"), base64Text=>{
+                Blob = base64Text
+                
+                let fileType = base64Text.split(':')
+                fileType = fileType[1].split('/')
+                fileType = fileType[0]
+                console.log(fileType)
+                if(fileType == 'image'){
+                    $("#ImagePreview").removeClass('d-none')
+                    $(`#ImagePreview`).css("background-image", `url(${base64Text})`).transition('jiggle');
+                }
+            })
+        })
+
+        $("#family_member_form").submit((e)=>{
+            e.preventDefault()
+            const member = getFormData('family_member_form')
+            if(!Isset(member.fullname) || !Isset(member.physical_address) || !Isset(member.phone_number) || !Isset(member.relationship)){
+                toast("Some required fields for Next Of Kin section are missing!", "error")
+                    return
+            }
+            familyMembers.push(member)
+            RenderFamilyMembers(familyMembers)
+            $("#family_member_form").trigger('reset')
+            console.log(familyMembers)
+            toast('Family member added!', 'default')
+        })
+
+        $("#document_form").submit(e=>{
+            e.preventDefault()
+            if(Isset(Blob)){
+                let Document = getFormData('document_form')
+                DocumentTypeSectionsArray = Document.document_type.split(':')
+                Document.document_type = DocumentTypeSectionsArray[0]
+                Document.document_name = DocumentTypeSectionsArray[1]
+                Document.document_issuer = DocumentTypeSectionsArray[2]
+                Document.Base64Text = Blob
+                Document.Type = Blob.split(':')[1]
+                Document.Type = Document.Type.split(';')[0]
+                Document.is_id = Document.is_id == "on" ? true : false
+                SelectedDocuments.push(Document)
+                $("#document_form").trigger('reset')
+                $(`#ImagePreview`).css("background-image", `none`)
+
+                Blob = null
+                console.log(SelectedDocuments)
+                RenderSelectedFiles(SelectedDocuments)
+            }else{
+                toast('Please make sure you have selected a file before inserting!', 'error')
+            }
+        })
+    })
+
+    const RenderSelectedFiles = (data)=>{
+
+        let DOM = data.map((item, index)=>{
+            return ` <tr>
+                                        <td>${(index+1)}</td>
+                                        <td>${item.document_name}</td>
+                                        <td>${item.id_number}</td>
+                                        <td>${item.document_issuer}</td>
+                                        <td>${item.Type}</td>
+                                        <td>${item.is_id}</td>
+                                        <td>
+                                            <a target="new" href="${item.Base64Text}">View On New Page</a>
+                                        </td>
+                                        <td>
+                                            <a type="button" onclick="RemoveDocument(${index})" class="text-danger"><i class="icon alternate outline trash"></i></a>
+                                        </td>
+                                    </tr>`
+        })
+        DOM = DOM.join(',')
+        $("#documents_table tbody").html(DOM)
+    }
+
+    const RenderFamilyMembers = (data)=>{
+        let DOM = data.map((item,index)=>{
+            //console.log(index, item)
+            return `<tr>
+                        <td>${(index+1)}</td>
+                        <td>${item.fullname}</td>
+                        <td>${item.phone_number}</td>
+                        <td>${item.physical_address}</td>
+                        <td>${item.relationship}</td>
+                        <td><a type="button" onclick="RemoveFamilyMember(${index})" class="text-danger"><i class="icon alternate outline trash"></i></a></td>
+                    </tr>`
+        })
+
+        DOM = DOM.join(',')
+        $("#family_members_table tbody").html(DOM)
+    }
+
+    const RemoveFamilyMember = (index)=>{
+       const message = "Are you sure you want to remove this record from the list of selected documents?"
+       Confirm(message, res=>{
+           if(res){
+            familyMembers.pop(familyMembers[index])
+            RenderFamilyMembers(familyMembers)
+           }
+       });
+    
+    }
+
+    const RemoveDocument = (index)=>{
+       const message = "Are you sure you want to remove this record from the list of selected documents?"
+       Confirm(message, res=>{
+           if(res){
+                SelectedDocuments.pop(SelectedDocuments[index])
+                RenderSelectedFiles(SelectedDocuments)
+           }
+       });
+    }
+</script>
+
+<style>
+    span.text-danger{
+        font-size: 15px !important;
+    }
+</style>
